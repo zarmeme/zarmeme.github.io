@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Projects</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="projects.html">Projects</a>
+<a href="blog.html">Blog</a>
+</nav>
+
+<div class="container">
+
+<h1>Projects</h1>
+
+<div class="card">
+<h2>Unity Experiment</h2>
+<p>Interactive system exploration</p>
+</div>
+
+<div class="card">
+<h2>Generative Visuals</h2>
+<p>Creative coding experiments</p>
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
