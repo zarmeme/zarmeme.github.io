@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Zara Meme</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body { background: var(--light-bg); color: var(--light-fg); }
+    #cur, #cdot { color: var(--light-fg); }
+    nav, .nav-logo, .nav-links a { color: var(--light-fg) !important; }
+
+    .ct-wrap {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    /* dot texture */
+    .ct-wrap::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(circle, rgba(26,18,9,.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .ct-inner {
+      max-width: 680px; width: 100%; padding: 4rem 3rem;
+      text-align: center; position: relative; z-index: 1;
+    }
+    .ct-ey {
+      font-size: .7rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+      opacity: .28; margin-bottom: 2rem;
+      display: flex; align-items: center; justify-content: center; gap: .7rem;
+    }
+    .ct-ey::before, .ct-ey::after { content: ''; width: 26px; height: 1.5px; background: currentColor; }
+
+    .ct-h {
+      font-family: var(--fd); font-weight: 900;
+      font-size: clamp(3rem, 8vw, 6.5rem); line-height: .9; letter-spacing: -.045em;
+      margin-bottom: 1.2rem;
+    }
+    .ct-h em { font-style: italic; color: var(--coral); }
+
+    .ct-sub { font-size: .97rem; line-height: 1.8; opacity: .52; max-width: 420px; margin: 0 auto 2.5rem; }
+
+    /* ✏️  Change this email */
+    .ct-email {
+      display: inline-block; font-family: var(--fd); font-weight: 700;
+      font-size: clamp(1.1rem, 2.2vw, 1.7rem); color: var(--light-fg);
+      text-decoration: none; border-bottom: 2px solid rgba(26,18,9,.12);
+      padding-bottom: .15rem; transition: color .2s, border-color .2s;
+      margin-bottom: 2.5rem; cursor: none;
+    }
+    .ct-email:hover { color: var(--coral); border-color: var(--coral); }
+
+    .ct-btns { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; }
+    .cbtn {
+      border: 1.5px solid rgba(26,18,9,.13); border-radius: 100px;
+      padding: .65rem 1.5rem; font-size: .82rem; font-weight: 600;
+      text-decoration: none; color: rgba(26,18,9,.5);
+      transition: all .2s; cursor: none; background: transparent;
+    }
+    .cbtn:hover { border-color: var(--light-fg); color: var(--light-fg); }
+    .cbtn.pr { background: var(--light-fg); color: var(--light-bg); border-color: var(--light-fg); }
+    .cbtn.pr:hover { background: var(--coral); border-color: var(--coral); }
+
+    /* big watermark */
+    .ct-deco {
+      position: absolute; font-family: var(--fd); font-weight: 900; font-style: italic;
+      font-size: 22vw; color: rgba(26,18,9,.03); bottom: -3vw; right: -1vw;
+      line-height: 1; pointer-events: none; user-select: none; letter-spacing: -.05em;
+    }
+
+    /* availability pill */
+    .avail-pill {
+      display: inline-flex; align-items: center; gap: .45rem;
+      background: #fff; border: 1px solid rgba(26,18,9,.1); border-radius: 100px;
+      padding: .35rem .9rem; font-size: .75rem; font-weight: 500;
+      margin-bottom: 2rem;
+    }
+    .avail-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #4CAF50;
+      box-shadow: 0 0 0 0 rgba(76,175,80,.4);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(76,175,80,.4); }
+      70% { box-shadow: 0 0 0 6px rgba(76,175,80,0); }
+      100% { box-shadow: 0 0 0 0 rgba(76,175,80,0); }
+    }
+
+    @media (max-width: 600px) {
+      .ct-inner { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div id="cur"></div><div id="cdot"></div>
+
+  <nav id="nav">
+    <a class="nav-logo" href="index.html">ZM.</a>
+    <div class="nav-links">
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="lab.html">Lab</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+  </nav>
+
+  <div class="ct-wrap">
+    <div class="ct-inner">
+      <div class="ct-ey rev">Get in touch</div>
+
+      <!-- ✏️  Remove this pill if you're not looking for work -->
+      <div class="rev d1" style="margin-bottom:.5rem">
+        <span class="avail-pill"><span class="avail-dot"></span>Available for work</span>
+      </div>
+
+      <h1 class="ct-h rev d2">Let's build<br>something <em>good.</em></h1>
+      <p class="ct-sub rev d3">
+        Open to full-time roles, freelance collaborations, and the occasional wild experiment.
+        If you have a vision that needs making real — I want to hear it.
+      </p>
+
+      <!-- ✏️  Change this to your real email -->
+      <div><a href="mailto:hello@zarameme.com" class="ct-email rev d4">hello@zarameme.com</a></div>
+
+      <div class="ct-btns rev d5">
+        <a href="mailto:hello@zarameme.com" class="cbtn pr">Say hello →</a>
+        <!-- ✏️  Update these links -->
+        <a href="https://github.com/zarmeme" target="_blank" class="cbtn">GitHub</a>
+        <a href="https://linkedin.com/in/yourname" target="_blank" class="cbtn">LinkedIn</a>
+        <a href="resume.pdf" class="cbtn">Resume ↓</a>
+      </div>
+    </div>
+    <div class="ct-deco">ZM</div>
+  </div>
+
+  <script src="shared.js"></script>
+</body>
+</html>

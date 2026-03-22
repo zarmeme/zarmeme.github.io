@@ -1,0 +1,124 @@
+/* ═══════════════════════════════════════
+   ZARA MEME — SHARED STYLES
+   Edit variables below to retheme the whole site
+═══════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=Epilogue:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* ── accent colours ── */
+  --coral:  #D4522A;
+  --sage:   #3D7A5A;
+  --gold:   #C8861A;
+  --sky:    #3468A8;
+  --rose:   #9C4870;
+  --mint:   #2E9E7C;
+
+  /* ── page tones ── */
+  --home-bg:  #0C0908;
+  --home-fg:  #F0EBE2;
+  --light-bg: #F7F2EC;
+  --light-fg: #1A1209;
+  --lab-bg:   #0B0D14;
+  --lab-fg:   #E8E2F5;
+
+  /* ── type ── */
+  --fd: 'Fraunces', serif;
+  --fb: 'Epilogue', sans-serif;
+}
+
+/* ── RESET ────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--fb); font-weight: 400; overflow-x: hidden; cursor: none; }
+
+/* ── PAGE FADE-IN / FADE-OUT ───────── */
+body { opacity: 0; animation: pagein .45s ease forwards; }
+@keyframes pagein { to { opacity: 1; } }
+body.fade-out { opacity: 0 !important; transition: opacity .28s ease; }
+
+/* ── CURSOR ───────────────────────── */
+#cur {
+  position: fixed; z-index: 9999; pointer-events: none;
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 1.5px solid currentColor;
+  transform: translate(-50%, -50%);
+  opacity: .4; mix-blend-mode: difference;
+  transition: width .2s, height .2s;
+}
+#cdot {
+  position: fixed; z-index: 10000; pointer-events: none;
+  width: 5px; height: 5px; border-radius: 50%; background: currentColor;
+  transform: translate(-50%, -50%); mix-blend-mode: difference;
+}
+body.hov #cur { width: 50px; height: 50px; opacity: .15; }
+
+/* ── NAV ──────────────────────────── */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.4rem 3rem;
+}
+.nav-logo {
+  font-family: var(--fd); font-weight: 900; font-style: italic;
+  font-size: 1.3rem; text-decoration: none; letter-spacing: -.02em;
+  transition: color .3s; cursor: none;
+}
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a {
+  font-size: .8rem; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; opacity: .4; transition: opacity .2s;
+  text-decoration: none; position: relative; cursor: none;
+}
+.nav-links a:hover { opacity: .9; }
+.nav-links a.active { opacity: 1; }
+.nav-links a.active::after {
+  content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+  height: 1.5px; background: currentColor; border-radius: 2px;
+}
+
+/* ── SHARED SCROLL REVEAL ─────────── */
+.rev {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .75s cubic-bezier(.23,1,.32,1), transform .75s cubic-bezier(.23,1,.32,1);
+}
+.rev.on { opacity: 1; transform: none; }
+.d1 { transition-delay: .08s; }
+.d2 { transition-delay: .16s; }
+.d3 { transition-delay: .24s; }
+.d4 { transition-delay: .32s; }
+.d5 { transition-delay: .40s; }
+
+/* ── SHARED TYPOGRAPHY HELPERS ────── */
+.pg-ey {
+  font-size: .7rem; font-weight: 600; letter-spacing: .18em;
+  text-transform: uppercase; opacity: .3; margin-bottom: 1rem;
+  display: flex; align-items: center; gap: .7rem;
+}
+.pg-ey::before { content: ''; width: 20px; height: 1.5px; background: currentColor; }
+
+.pg-h1 {
+  font-family: var(--fd); font-weight: 900;
+  font-size: clamp(3rem, 7vw, 7rem); line-height: .92; letter-spacing: -.04em;
+}
+.pg-h1 em { font-style: italic; color: var(--coral); }
+
+/* ── LIGHT PAGE BASE ──────────────── */
+.pg-light { background: var(--light-bg); color: var(--light-fg); min-height: 100vh; position: relative; }
+.pg-light::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(circle, rgba(26,18,9,.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.pg-light > * { position: relative; z-index: 1; }
+.pg-head { padding: 7rem 3rem 3rem; border-bottom: 1px solid rgba(26,18,9,.08); }
+
+/* ── RESPONSIVE ───────────────────── */
+@media (max-width: 900px) {
+  #nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.2rem; }
+  .nav-links a { font-size: .72rem; }
+  .pg-head { padding: 6rem 1.5rem 2rem; }
+}
+@media (max-width: 600px) {
+  .nav-links a { letter-spacing: .06em; }
+}

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lab — Zara Meme</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body { background: var(--lab-bg); color: var(--lab-fg); }
+    #cur, #cdot { color: var(--lab-fg); }
+    nav, .nav-logo, .nav-links a { color: var(--lab-fg) !important; }
+
+    /* ── HEAD ── */
+    .lab-head { padding: 7rem 3rem 3rem; border-bottom: 1px solid rgba(232,226,245,.06); }
+    .lab-ey {
+      font-size: .7rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+      opacity: .28; margin-bottom: 1rem; display: flex; align-items: center; gap: .7rem;
+    }
+    .lab-ey::before { content: ''; width: 20px; height: 1.5px; background: currentColor; }
+    .lab-h1 { font-family: var(--fd); font-weight: 900; font-size: clamp(3rem, 7vw, 7rem); line-height: .92; letter-spacing: -.04em; }
+    .lab-h1 em { font-style: italic; opacity: .25; }
+    .lab-sub { margin-top: .9rem; font-size: .93rem; opacity: .35; line-height: 1.6; max-width: 440px; }
+
+    /* ── GRID ── */
+    .lab-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; background: rgba(232,226,245,.04);
+      border-top: 1px solid rgba(232,226,245,.04);
+    }
+    .lab-cell { background: var(--lab-bg); position: relative; overflow: hidden; cursor: none; }
+    .lab-cell canvas { display: block; width: 100%; }
+    .lab-info { padding: .9rem 1.8rem 1.6rem; border-top: 1px solid rgba(232,226,245,.05); }
+    .lab-nm { font-family: var(--fd); font-weight: 700; font-size: 1.05rem; margin-bottom: .25rem; }
+    .lab-ds { font-size: .8rem; opacity: .36; line-height: 1.6; }
+    .lab-ht { font-size: .66rem; opacity: .2; margin-top: .3rem; font-style: italic; }
+
+    @media (max-width: 900px) {
+      .lab-head { padding: 6rem 1.5rem 2.5rem; }
+      .lab-grid { grid-template-columns: 1fr; }
+      .lab-info { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div id="cur"></div><div id="cdot"></div>
+
+  <nav id="nav">
+    <a class="nav-logo" href="index.html">ZM.</a>
+    <div class="nav-links">
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="lab.html" class="active">Lab</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="lab-head">
+    <div class="lab-ey rev">Experiments</div>
+    <h1 class="lab-h1 rev d1">The <em>Lab.</em></h1>
+    <p class="lab-sub rev d2">Things I make for fun. All interactive — move your cursor around, click to disturb.</p>
+  </div>
+
+  <div class="lab-grid">
+
+    <div class="lab-cell rev">
+      <canvas id="lb1" height="320"></canvas>
+      <div class="lab-info">
+        <div class="lab-nm">Flow Field</div>
+        <div class="lab-ds">Particles drift through a Perlin-style noise vector field.</div>
+        <div class="lab-ht">hover to repel · click to reset</div>
+      </div>
+    </div>
+
+    <div class="lab-cell rev d1">
+      <canvas id="lb2" height="320"></canvas>
+      <div class="lab-info">
+        <div class="lab-nm">Lissajous Engine</div>
+        <div class="lab-ds">Two oscillating signals drawing harmonic curves over time.</div>
+        <div class="lab-ht">move cursor left/right to shift frequency ratio</div>
+      </div>
+    </div>
+
+    <div class="lab-cell rev d2">
+      <canvas id="lb3" height="320"></canvas>
+      <div class="lab-info">
+        <div class="lab-nm">Metaballs</div>
+        <div class="lab-ds">Charged organic blobs that attract and merge.</div>
+        <div class="lab-ht">hover to attract · click to spawn a new ball</div>
+      </div>
+    </div>
+
+    <div class="lab-cell rev d3">
+      <canvas id="lb4" height="320"></canvas>
+      <div class="lab-info">
+        <div class="lab-nm">Reaction Diffusion</div>
+        <div class="lab-ds">A Gray-Scott simulation growing coral-like patterns in real time.</div>
+        <div class="lab-ht">click to seed new growth · watch it spread</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="shared.js"></script>
+  <script>
+    const PAL = ['#D4522A','#C8861A','#3D7A5A','#3468A8','#9C4870','#2E9E7C'];
+
+    function labSetup(id) {
+      const c = document.getElementById(id); if (!c) return null;
+      const ctx = c.getContext('2d');
+      function rz() { c.width = c.parentElement.clientWidth; }
+      rz(); new ResizeObserver(rz).observe(c.parentElement);
+      return { c, ctx, get W() { return c.width; }, get H() { return c.height; } };
+    }
+
+    /* ── 1. FLOW FIELD ── */
+    (function () {
+      const lc = labSetup('lb1'); if (!lc) return;
+      const { c, ctx } = lc;
+      const N = 380; let pts = [], mouse = { x: -999, y: -999 };
+      function init() {
+        pts = Array.from({ length: N }, () => ({
+          x: Math.random() * lc.W, y: Math.random() * lc.H,
+          col: PAL[Math.floor(Math.random() * PAL.length)]
+        }));
+      }
+      setTimeout(init, 60);
+      c.addEventListener('mousemove', e => { const r = c.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+      c.addEventListener('mouseleave', () => { mouse.x = -999; });
+      c.addEventListener('click', () => { ctx.fillStyle = 'rgba(11,13,20,1)'; ctx.fillRect(0, 0, lc.W, lc.H); init(); });
+      function noise(x, y, t) { return Math.sin(x * .009 + t) * Math.cos(y * .011 + t * .7) + Math.sin(x * .015 - y * .013 + t * .5); }
+      let t = 0;
+      (function d() {
+        t += .007;
+        ctx.fillStyle = 'rgba(11,13,20,.04)'; ctx.fillRect(0, 0, lc.W, lc.H);
+        (pts || []).forEach(p => {
+          const n = noise(p.x, p.y, t) * Math.PI * 2.3;
+          let vx = Math.cos(n) * 1.7, vy = Math.sin(n) * 1.7;
+          const dx = mouse.x - p.x, dy = mouse.y - p.y, d2 = Math.sqrt(dx * dx + dy * dy);
+          if (d2 < 90 && d2 > 0) { vx -= dx / d2 * (1 - d2 / 90) * 3; vy -= dy / d2 * (1 - d2 / 90) * 3; }
+          p.x += vx; p.y += vy;
+          if (p.x < 0) p.x = lc.W; if (p.x > lc.W) p.x = 0;
+          if (p.y < 0) p.y = lc.H; if (p.y > lc.H) p.y = 0;
+          ctx.fillStyle = p.col + '99'; ctx.beginPath(); ctx.arc(p.x, p.y, 1.3, 0, Math.PI * 2); ctx.fill();
+        });
+        requestAnimationFrame(d);
+      })();
+    })();
+
+    /* ── 2. LISSAJOUS ENGINE ── */
+    (function () {
+      const lc = labSetup('lb2'); if (!lc) return;
+      const { c, ctx } = lc;
+      let mxRatio = .5, trail = [];
+      c.addEventListener('mousemove', e => { const r = c.getBoundingClientRect(); mxRatio = (e.clientX - r.left) / r.width; });
+      let t = 0;
+      (function d() {
+        t += .018;
+        const fA = 2 + mxRatio * 3;
+        const x = Math.sin(fA * t + t * .3) * lc.W * .4 + lc.W * .5;
+        const y = Math.sin(3 * t) * lc.H * .4 + lc.H * .5;
+        trail.push({ x, y, t }); if (trail.length > 500) trail.shift();
+        ctx.fillStyle = 'rgba(11,13,20,.14)'; ctx.fillRect(0, 0, lc.W, lc.H);
+        ctx.lineWidth = 1.8;
+        for (let i = 1; i < trail.length; i++) {
+          const age = (trail.length - i) / trail.length;
+          const hue = (trail[i].t * 22) % 360;
+          ctx.strokeStyle = `hsla(${hue},72%,65%,${age * .8})`;
+          ctx.beginPath(); ctx.moveTo(trail[i - 1].x, trail[i - 1].y); ctx.lineTo(trail[i].x, trail[i].y); ctx.stroke();
+        }
+        ctx.fillStyle = '#E8E2F5'; ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill();
+        requestAnimationFrame(d);
+      })();
+    })();
+
+    /* ── 3. METABALLS ── */
+    (function () {
+      const lc = labSetup('lb3'); if (!lc) return;
+      const { c, ctx } = lc;
+      let mouse = { x: -999, y: -999 };
+      let balls = Array.from({ length: 5 }, (_, i) => ({
+        x: .1 + Math.random() * .8, y: .1 + Math.random() * .8,
+        vx: (Math.random() - .5) * .007, vy: (Math.random() - .5) * .007,
+        r: .07 + Math.random() * .05, col: PAL[i % PAL.length]
+      }));
+      c.addEventListener('mousemove', e => { const r = c.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+      c.addEventListener('mouseleave', () => { mouse.x = -999; });
+      c.addEventListener('click', e => {
+        const r = c.getBoundingClientRect();
+        balls.push({ x: (e.clientX - r.left) / lc.W, y: (e.clientY - r.top) / lc.H, vx: (Math.random() - .5) * .007, vy: (Math.random() - .5) * .007, r: .065, col: PAL[balls.length % PAL.length] });
+        if (balls.length > 10) balls.shift();
+      });
+      (function d() {
+        ctx.fillStyle = '#0B0D14'; ctx.fillRect(0, 0, lc.W, lc.H);
+        balls.forEach(b => {
+          b.x += b.vx; b.y += b.vy;
+          if (b.x < .05 || b.x > .95) b.vx *= -1;
+          if (b.y < .05 || b.y > .95) b.vy *= -1;
+          if (mouse.x > 0) {
+            const dx = mouse.x / lc.W - b.x, dy = mouse.y / lc.H - b.y;
+            b.vx += dx * .0004; b.vy += dy * .0004;
+            const sp = Math.sqrt(b.vx * b.vx + b.vy * b.vy);
+            if (sp > .018) { b.vx *= .018 / sp; b.vy *= .018 / sp; }
+          }
+          const px = b.x * lc.W, py = b.y * lc.H, pr = b.r * Math.min(lc.W, lc.H);
+          const g = ctx.createRadialGradient(px, py, 0, px, py, pr);
+          g.addColorStop(0, b.col + 'ff'); g.addColorStop(.5, b.col + '66'); g.addColorStop(1, b.col + '00');
+          ctx.fillStyle = g; ctx.globalAlpha = .72; ctx.beginPath(); ctx.arc(px, py, pr, 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1;
+        });
+        requestAnimationFrame(d);
+      })();
+    })();
+
+    /* ── 4. REACTION DIFFUSION (Gray-Scott) ── */
+    (function () {
+      const lc = labSetup('lb4'); if (!lc) return;
+      const { c, ctx } = lc;
+      const SC = 4; let gW, gH, grid, nxt, offsc, offCtx, imgd;
+      function initRD() {
+        gW = Math.floor(lc.W / SC); gH = Math.floor(lc.H / SC);
+        grid = new Float32Array(gW * gH * 2); nxt = new Float32Array(gW * gH * 2);
+        for (let i = 0; i < gW * gH; i++) { grid[i * 2] = 1; grid[i * 2 + 1] = 0; }
+        seed(Math.floor(gW / 2), Math.floor(gH / 2), 10);
+        offsc = document.createElement('canvas'); offsc.width = gW; offsc.height = gH;
+        offCtx = offsc.getContext('2d'); imgd = offCtx.createImageData(gW, gH);
+      }
+      function seed(cx, cy, r) {
+        for (let dx = -r; dx <= r; dx++) for (let dy = -r; dy <= r; dy++) {
+          if (dx * dx + dy * dy <= r * r) {
+            const idx = (cy + dy) * gW + (cx + dx);
+            if (idx >= 0 && idx < gW * gH) grid[idx * 2 + 1] = 1;
+          }
+        }
+      }
+      c.addEventListener('click', e => {
+        const r = c.getBoundingClientRect();
+        seed(Math.floor((e.clientX - r.left) / SC), Math.floor((e.clientY - r.top) / SC), 7);
+      });
+      const dA = 1, dB = .5, feed = .055, kill = .062;
+      function step() {
+        for (let y = 1; y < gH - 1; y++) for (let x = 1; x < gW - 1; x++) {
+          const i = (y * gW + x) * 2;
+          const A = grid[i], B = grid[i + 1];
+          const lA = grid[((y - 1) * gW + x) * 2] + grid[((y + 1) * gW + x) * 2] + grid[(y * gW + x - 1) * 2] + grid[(y * gW + x + 1) * 2] - 4 * A;
+          const lB = grid[((y - 1) * gW + x) * 2 + 1] + grid[((y + 1) * gW + x) * 2 + 1] + grid[(y * gW + x - 1) * 2 + 1] + grid[(y * gW + x + 1) * 2 + 1] - 4 * B;
+          const abb = A * B * B;
+          nxt[i] = Math.max(0, Math.min(1, A + dA * lA - abb + feed * (1 - A)));
+          nxt[i + 1] = Math.max(0, Math.min(1, B + dB * lB + abb - (kill + feed) * B));
+        }
+        [grid, nxt] = [nxt, grid];
+      }
+      setTimeout(initRD, 80);
+      (function d() {
+        if (!grid) return requestAnimationFrame(d);
+        for (let k = 0; k < 4; k++) step();
+        for (let i = 0; i < gW * gH; i++) {
+          const v = grid[i * 2] - grid[i * 2 + 1];
+          imgd.data[i * 4] = Math.max(0, Math.min(255, 10 + (1 - v) * 195));
+          imgd.data[i * 4 + 1] = Math.max(0, Math.min(255, 12 + (1 - v) * 75));
+          imgd.data[i * 4 + 2] = Math.max(0, Math.min(255, 18 + (1 - v) * 105));
+          imgd.data[i * 4 + 3] = 255;
+        }
+        offCtx.putImageData(imgd, 0, 0);
+        ctx.drawImage(offsc, 0, 0, lc.W, lc.H);
+        requestAnimationFrame(d);
+      })();
+    })();
+  </script>
+</body>
+</html>
