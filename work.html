@@ -9,6 +9,9 @@
     body { background: var(--light-bg); color: var(--light-fg); }
     #cur, #cdot { color: var(--light-fg); }
     #nav, .nav-links a { color: var(--light-fg); }
+   
+    /*clickable card*/
+    a.pcard { display: block; text-decoration: none; color: inherit; }
 
     /* Logo inverted so white logo reads dark on light bg */
     .nav-logo img { height: 26px; width: auto; filter: invert(1); }
@@ -96,7 +99,7 @@
     -->
     <div class="proj-grid">
 
-      <div class="pcard rev" data-cat="ux">
+<a href="forest-spirit-run.html" class="pcard rev" data-cat="ux">
         <div class="pc-bar" style="background:#3D7A5A"></div>
         <div class="pc-cv"><canvas id="pc0" height="190"></canvas></div>
         <div class="pc-body">
@@ -106,7 +109,6 @@
           <p class="pc-desc">A cozy obstacle course where the level itself is the tutorial — mechanics taught through movement, gaps, and fireflies. No text, no prompts.</p>
           <div class="pc-tags"><span class="ptag">Unity</span><span class="ptag">C#</span><span class="ptag">Onboarding</span><span class="ptag">Level Design</span></div>
         </div>
-        <a href="forest-spirit-run.html" class="pc-arr">↗</a>
       </div>
 
       <div class="pcard rev d1" data-cat="code">
