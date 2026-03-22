@@ -8,27 +8,18 @@
   <style>
     body { background: var(--light-bg); color: var(--light-fg); }
     #cur, #cdot { color: var(--light-fg); }
-    nav, .nav-logo, .nav-links a { color: var(--light-fg) !important; }
+    #nav, .nav-links a { color: var(--light-fg); }
+    .nav-logo img { height: 26px; width: auto; filter: invert(1); }
 
-    /* ── LAYOUT ── */
     .ab-body { padding: 3rem 3rem 7rem; }
     .ab-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 5rem; align-items: start; }
 
-    .ab-pull {
-      font-family: var(--fd); font-style: italic;
-      font-size: clamp(1.2rem, 2vw, 1.85rem); line-height: 1.35;
-      color: var(--coral); margin-bottom: 1.8rem; letter-spacing: -.01em;
-    }
+    .ab-pull { font-family: var(--fd); font-style: italic; font-size: clamp(1.2rem,2vw,1.85rem); line-height: 1.35; color: var(--coral); margin-bottom: 1.8rem; letter-spacing: -.01em; }
     .ab-p { font-size: .97rem; line-height: 1.9; opacity: .65; margin-bottom: 1rem; }
     .ab-p strong { opacity: 1; color: var(--light-fg); font-weight: 600; }
 
-    /* ── TABS ── */
     .tabs-row { display: flex; gap: .4rem; margin-top: 2.2rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
-    .tb {
-      border: 1.5px solid rgba(26,18,9,.13); border-radius: 100px;
-      padding: .35rem .95rem; font-size: .77rem; font-weight: 600;
-      background: transparent; cursor: none; transition: all .2s; color: rgba(26,18,9,.4);
-    }
+    .tb { border: 1.5px solid rgba(26,18,9,.13); border-radius: 100px; padding: .35rem .95rem; font-size: .77rem; font-weight: 600; background: transparent; cursor: none; transition: all .2s; color: rgba(26,18,9,.4); }
     .tb.on { background: var(--light-fg); color: var(--light-bg); border-color: var(--light-fg); }
     .tab-pnl { display: none; }
     .tab-pnl.on { display: block; }
@@ -36,46 +27,37 @@
     .tab-list li { font-size: .92rem; line-height: 1.65; opacity: .6; display: flex; align-items: flex-start; gap: .7rem; }
     .tab-list li::before { content: '→'; color: var(--coral); font-size: .78rem; flex-shrink: 0; margin-top: .12rem; }
 
-    /* ── FACT CARDS ── */
     .fc-stack { display: flex; flex-direction: column; gap: .85rem; padding-top: .3rem; }
-    .fc {
-      background: #fff; border: 1px solid rgba(26,18,9,.07); border-radius: 14px;
-      padding: 1rem 1.2rem; transform: rotate(var(--r, 0deg));
-      transition: transform .35s cubic-bezier(.23,1,.32,1), box-shadow .35s;
-    }
+    .fc { background: #fff; border: 1px solid rgba(26,18,9,.07); border-radius: 14px; padding: 1rem 1.2rem; transform: rotate(var(--r,0deg)); transition: transform .35s cubic-bezier(.23,1,.32,1), box-shadow .35s; }
     .fc:hover { transform: rotate(0deg) translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,.07); }
     .fc-lbl { font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; opacity: .3; margin-bottom: .3rem; }
     .fc-val { font-family: var(--fd); font-weight: 700; font-size: .98rem; line-height: 1.3; }
 
-    /* ── SKILLS ── */
     .sk-row { margin-top: 3.5rem; padding-top: 2.2rem; border-top: 1px solid rgba(26,18,9,.07); }
-    .sk-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 1.3rem; }
+    .sk-cols { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 1.3rem; }
     .sc-lbl { font-size: .66rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; opacity: .3; margin-bottom: .7rem; }
     .sc-item { font-size: .9rem; font-weight: 500; opacity: .6; padding: .2rem 0; }
 
-    /* ── NUMBERS ── */
-    .nums-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(26,18,9,.08); border: 1px solid rgba(26,18,9,.08); border-radius: 16px; overflow: hidden; margin-top: 3rem; }
+    .nums-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: rgba(26,18,9,.08); border: 1px solid rgba(26,18,9,.08); border-radius: 16px; overflow: hidden; margin-top: 3rem; }
     .num-cell { background: var(--light-bg); padding: 1.5rem 1.2rem; text-align: center; transition: background .3s; }
     .num-cell:hover { background: #fff; }
     .num-val { font-family: var(--fd); font-weight: 800; font-size: 2.2rem; line-height: 1; color: var(--coral); }
     .num-lbl { font-size: .7rem; font-weight: 500; opacity: .4; margin-top: .3rem; letter-spacing: .04em; }
 
-    @media (max-width: 900px) {
+    @media (max-width:900px) {
       .ab-body { padding: 2.5rem 1.5rem 5rem; }
       .ab-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .sk-cols { grid-template-columns: 1fr 1fr; }
       .nums-row { grid-template-columns: 1fr 1fr; }
     }
-    @media (max-width: 500px) {
-      .sk-cols { grid-template-columns: 1fr; }
-    }
+    @media (max-width:500px) { .sk-cols { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
   <div id="cur"></div><div id="cdot"></div>
 
   <nav id="nav">
-    <a class="nav-logo" href="index.html">ZM.</a>
+    <a class="nav-logo" href="index.html"><img src="LOGO.png" alt="Zara Meme logo"/></a>
     <div class="nav-links">
       <a href="work.html">Work</a>
       <a href="about.html" class="active">About</a>
@@ -89,60 +71,38 @@
       <div class="pg-ey rev">About me</div>
       <h1 class="pg-h1 rev d1">A bit <em>curious</em>,<br>a bit technical.</h1>
     </div>
-
     <div class="ab-body">
       <div class="ab-grid">
-        <!-- LEFT COLUMN -->
         <div>
           <p class="ab-pull rev">"I make things that feel alive. That's the whole job."</p>
-          <p class="ab-p rev d1">
-            I'm a creative technologist with 5 years building experiences at the edge of design and code.
-            <strong>My sweet spot is the gap</strong> — where rigorous UX systems and generative, expressive ideas
-            overlap into something genuinely surprising.
-          </p>
-          <p class="ab-p rev d2">
-            Before tech I studied fine art, which means I came to code from the other direction —
-            thinking first about <strong>composition, rhythm, and what things feel like</strong>,
-            then figuring out how to build them. It's a useful order.
-          </p>
-          <p class="ab-p rev d3">
-            I prototype fast, iterate with a lot of joy, and believe the best work comes from treating
-            <strong>every micro-interaction as its own design problem.</strong>
-          </p>
-
+          <p class="ab-p rev d1">I'm a creative technologist with 5 years building experiences at the edge of design and code. <strong>My sweet spot is the gap</strong> — where rigorous UX systems and generative, expressive ideas overlap into something genuinely surprising.</p>
+          <p class="ab-p rev d2">Before tech I studied fine art, which means I came to code from the other direction — thinking first about <strong>composition, rhythm, and what things feel like</strong>, then figuring out how to build them. It's a useful order.</p>
+          <p class="ab-p rev d3">I prototype fast, iterate with a lot of joy, and believe the best work comes from treating <strong>every micro-interaction as its own design problem.</strong></p>
           <div class="rev d4">
             <div class="tabs-row">
               <button class="tb on" data-t="bg">Background</button>
               <button class="tb" data-t="how">How I think</button>
               <button class="tb" data-t="fun">Fun stuff</button>
             </div>
-            <div id="tab-bg" class="tab-pnl on">
-              <ul class="tab-list">
-                <li>5+ yrs across agencies, startups, and museum installations</li>
-                <li>Fine art background — came to programming from visual thinking</li>
-                <li>Comfortable as the only designer on an engineering team (and vice versa)</li>
-                <li>Open to full-time, freelance, and the occasional weird experiment</li>
-              </ul>
-            </div>
-            <div id="tab-how" class="tab-pnl">
-              <ul class="tab-list">
-                <li>I build prototypes to think, not just to validate — code is my sketchbook</li>
-                <li>Delight is a mechanism, not decoration</li>
-                <li>Systems first, aesthetics second — but never last</li>
-                <li>Best ideas start with "what if we just…"</li>
-              </ul>
-            </div>
-            <div id="tab-fun" class="tab-pnl">
-              <ul class="tab-list">
-                <li>Currently obsessed with reaction-diffusion systems and computational poetry</li>
-                <li>I read ~40 books a year: sci-fi, design theory, and anything weird</li>
-                <li>Made my first website at 11 — Comic Sans, animated GIFs, hit counter. Peak design.</li>
-                <li>I have strong opinions about kerning. I'm sorry. I'm not sorry.</li>
-              </ul>
-            </div>
+            <div id="tab-bg" class="tab-pnl on"><ul class="tab-list">
+              <li>5+ yrs across agencies, startups, and museum installations</li>
+              <li>Fine art background — came to programming from visual thinking</li>
+              <li>Comfortable as the only designer on an engineering team (and vice versa)</li>
+              <li>Open to full-time, freelance, and the occasional weird experiment</li>
+            </ul></div>
+            <div id="tab-how" class="tab-pnl"><ul class="tab-list">
+              <li>I build prototypes to think, not just to validate — code is my sketchbook</li>
+              <li>Delight is a mechanism, not decoration</li>
+              <li>Systems first, aesthetics second — but never last</li>
+              <li>Best ideas start with "what if we just…"</li>
+            </ul></div>
+            <div id="tab-fun" class="tab-pnl"><ul class="tab-list">
+              <li>Currently obsessed with reaction-diffusion systems and computational poetry</li>
+              <li>I read ~40 books a year: sci-fi, design theory, and anything weird</li>
+              <li>Made my first website at 11 — Comic Sans, animated GIFs, hit counter. Peak design.</li>
+              <li>I have strong opinions about kerning. I'm sorry. I'm not sorry.</li>
+            </ul></div>
           </div>
-
-          <!-- NUMBERS -->
           <div class="nums-row rev d5">
             <div class="num-cell"><div class="num-val" data-count="40">0+</div><div class="num-lbl">Projects shipped</div></div>
             <div class="num-cell"><div class="num-val" data-count="5">0+</div><div class="num-lbl">Years exp.</div></div>
@@ -150,61 +110,21 @@
             <div class="num-cell"><div class="num-val" data-count="8">0+</div><div class="num-lbl">Awards</div></div>
           </div>
         </div>
-
-        <!-- RIGHT COLUMN: FACT CARDS -->
-        <!-- ✏️  Edit these to be your own "currently" facts -->
+        <!-- ✏️ Update these fact cards with your own "currently" info -->
         <div class="fc-stack rev d2">
-          <div class="fc" style="--r:-1.8deg">
-            <div class="fc-lbl">Currently reading</div>
-            <div class="fc-val">Speculative Everything — Dunne &amp; Raby</div>
-          </div>
-          <div class="fc" style="--r:1.5deg">
-            <div class="fc-lbl">Currently building</div>
-            <div class="fc-val">A generative type tool that responds to music</div>
-          </div>
-          <div class="fc" style="--r:-1deg">
-            <div class="fc-lbl">Currently listening</div>
-            <div class="fc-val">Four Tet · Burial · Floating Points</div>
-          </div>
-          <div class="fc" style="--r:2deg">
-            <div class="fc-lbl">Dream collab</div>
-            <div class="fc-val">teamLab × Refik Anadol ✦</div>
-          </div>
-          <div class="fc" style="--r:-1.4deg">
-            <div class="fc-lbl">Status</div>
-            <div class="fc-val">Open to work — Full-time · Freelance ✦</div>
-          </div>
+          <div class="fc" style="--r:-1.8deg"><div class="fc-lbl">Currently reading</div><div class="fc-val">Speculative Everything — Dunne &amp; Raby</div></div>
+          <div class="fc" style="--r:1.5deg"><div class="fc-lbl">Currently building</div><div class="fc-val">A generative type tool that responds to music</div></div>
+          <div class="fc" style="--r:-1deg"><div class="fc-lbl">Currently listening</div><div class="fc-val">Four Tet · Burial · Floating Points</div></div>
+          <div class="fc" style="--r:2deg"><div class="fc-lbl">Dream collab</div><div class="fc-val">teamLab × Refik Anadol ✦</div></div>
+          <div class="fc" style="--r:-1.4deg"><div class="fc-lbl">Status</div><div class="fc-val">Open to work — Full-time · Freelance ✦</div></div>
         </div>
       </div>
-
-      <!-- SKILLS -->
       <div class="sk-row rev">
         <div class="pg-ey">Skills &amp; Tools</div>
         <div class="sk-cols">
-          <div>
-            <div class="sc-lbl">Design</div>
-            <div class="sc-item">Figma · Framer</div>
-            <div class="sc-item">After Effects</div>
-            <div class="sc-item">Design Systems</div>
-            <div class="sc-item">UX Research</div>
-            <div class="sc-item">Prototyping</div>
-          </div>
-          <div>
-            <div class="sc-lbl">Code</div>
-            <div class="sc-item">React · Next.js</div>
-            <div class="sc-item">Three.js · WebGL</div>
-            <div class="sc-item">p5.js · Canvas API</div>
-            <div class="sc-item">D3.js · GSAP</div>
-            <div class="sc-item">Arduino · TouchDesigner</div>
-          </div>
-          <div>
-            <div class="sc-lbl">Thinking</div>
-            <div class="sc-item">Systems Design</div>
-            <div class="sc-item">Facilitation</div>
-            <div class="sc-item">Storytelling</div>
-            <div class="sc-item">Technical Direction</div>
-            <div class="sc-item">Rapid Prototyping</div>
-          </div>
+          <div><div class="sc-lbl">Design</div><div class="sc-item">Figma · Framer</div><div class="sc-item">After Effects</div><div class="sc-item">Design Systems</div><div class="sc-item">UX Research</div><div class="sc-item">Prototyping</div></div>
+          <div><div class="sc-lbl">Code</div><div class="sc-item">React · Next.js</div><div class="sc-item">Three.js · WebGL</div><div class="sc-item">p5.js · Canvas API</div><div class="sc-item">D3.js · GSAP</div><div class="sc-item">Arduino · TouchDesigner</div></div>
+          <div><div class="sc-lbl">Thinking</div><div class="sc-item">Systems Design</div><div class="sc-item">Facilitation</div><div class="sc-item">Storytelling</div><div class="sc-item">Technical Direction</div><div class="sc-item">Rapid Prototyping</div></div>
         </div>
       </div>
     </div>
@@ -212,7 +132,6 @@
 
   <script src="shared.js"></script>
   <script>
-    /* ── Tabs ── */
     document.querySelectorAll('.tb').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tb').forEach(b => b.classList.remove('on'));
@@ -221,8 +140,6 @@
         document.getElementById('tab-' + btn.dataset.t).classList.add('on');
       });
     });
-
-    /* ── Counters (fire when visible) ── */
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { animateCounters(); io.disconnect(); } });
     }, { threshold: .5 });

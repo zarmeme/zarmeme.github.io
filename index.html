@@ -3,28 +3,44 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Zarmeen — Creative Technologist</title>
+  <title>Zara Meme — Creative Technologist</title>
   <link rel="stylesheet" href="style.css"/>
   <style>
     body { background: var(--home-bg); color: var(--home-fg); }
     #cur, #cdot { color: var(--home-fg); }
 
-    /* ── CANVAS BG ── */
     #home-cv { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; }
 
-    /* ── LAYOUT ── */
-    .home-wrap { position: relative; z-index: 2; min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 3rem 3rem 5rem; pointer-events: none; }
+    /* ── LOGO (fixed top-left) ── */
+    .home-logo {
+      position: fixed; top: 1.6rem; left: 2.8rem; z-index: 10; cursor: none;
+    }
+    .home-logo img { height: 30px; width: auto; display: block; }
 
+    /* ── SIDE NAV ── */
+    .home-side {
+      position: fixed; right: 2.8rem; top: 50%; transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 1.6rem; z-index: 10;
+    }
+    .home-side a {
+      font-size: .63rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(240,235,226,.22); writing-mode: vertical-rl;
+      text-decoration: none; transition: color .25s; cursor: none;
+    }
+    .home-side a:hover { color: var(--home-fg); }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative; z-index: 2; min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 3rem 3rem 5rem; pointer-events: none;
+    }
     .home-eyebrow {
       font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
       color: rgba(240,235,226,.3); margin-bottom: 2rem;
       display: flex; align-items: center; gap: .8rem;
     }
     .home-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--coral); }
-
-    /* Big name — letters repel from cursor */
     .home-name {
       font-family: var(--fd); font-weight: 900; font-style: italic;
       font-size: clamp(5rem, 13vw, 12rem);
@@ -32,33 +48,22 @@
       display: flex; flex-wrap: wrap; column-gap: .22em;
     }
     .nc { display: inline-block; transition: transform .5s cubic-bezier(.23,1,.32,1); }
-
     .home-sub {
       margin-top: 1.8rem; font-size: .82rem; font-weight: 300;
       letter-spacing: .14em; text-transform: uppercase;
       color: rgba(240,235,226,.28);
     }
 
-    /* ── VERTICAL SIDE LINKS ── */
-    .home-side {
-      position: fixed; right: 3rem; top: 50%; transform: translateY(-50%);
-      display: flex; flex-direction: column; gap: 1.6rem; z-index: 10;
-      pointer-events: all;
-    }
-    .home-side a {
-      font-size: .65rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
-      color: rgba(240,235,226,.2); writing-mode: vertical-rl;
-      text-decoration: none; transition: color .25s;
-    }
-    .home-side a:hover { color: var(--home-fg); }
-
     /* ── SCROLL CUE ── */
-    .home-scroll {
+    #scroll-btn {
       position: fixed; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: .5rem;
-      font-size: .65rem; letter-spacing: .18em; text-transform: uppercase;
-      color: rgba(240,235,226,.18); z-index: 10; pointer-events: none;
+      font-size: .63rem; letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(240,235,226,.22); z-index: 10;
+      background: none; border: none; cursor: none; font-family: var(--fb);
+      transition: opacity .5s, color .3s;
     }
+    #scroll-btn:hover { color: rgba(240,235,226,.7); }
     .scroll-line {
       width: 1px; height: 44px;
       background: linear-gradient(var(--coral), transparent);
@@ -66,9 +71,62 @@
     }
     @keyframes spulse { 0%,100%{opacity:.2;} 50%{opacity:1;} }
 
+    /* ── INTRO SECTION ── */
+    #intro {
+      position: relative; z-index: 2; min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 6rem 3rem 6rem;
+    }
+    .intro-inner { max-width: 860px; }
+    .intro-tag {
+      font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+      color: rgba(240,235,226,.3); margin-bottom: 2.5rem;
+      display: flex; align-items: center; gap: .7rem;
+    }
+    .intro-tag::before { content: ''; width: 24px; height: 1px; background: var(--coral); }
+    .intro-statement {
+      font-family: var(--fd); font-style: italic;
+      font-size: clamp(2rem, 4.5vw, 4rem); line-height: 1.12; letter-spacing: -.025em;
+      color: var(--home-fg); margin-bottom: 3.5rem;
+    }
+    .intro-statement em { color: var(--coral); font-style: italic; }
+
+    .intro-disciplines {
+      display: flex; gap: 1px; margin-bottom: 3.5rem;
+      border: 1px solid rgba(240,235,226,.08); border-radius: 14px; overflow: hidden;
+    }
+    .disc {
+      flex: 1; padding: 1.6rem 1.8rem;
+      border-right: 1px solid rgba(240,235,226,.08);
+      transition: background .3s;
+    }
+    .disc:last-child { border-right: none; }
+    .disc:hover { background: rgba(240,235,226,.03); }
+    .disc-icon { font-size: 1.2rem; margin-bottom: .7rem; opacity: .5; }
+    .disc-name {
+      font-family: var(--fd); font-weight: 700; font-size: 1.05rem;
+      color: var(--home-fg); margin-bottom: .4rem;
+    }
+    .disc-desc { font-size: .81rem; opacity: .36; line-height: 1.6; }
+
+    .intro-cta {
+      display: inline-flex; align-items: center; gap: .6rem;
+      font-family: var(--fd); font-weight: 700; font-size: .95rem;
+      color: var(--home-fg); text-decoration: none;
+      border-bottom: 1px solid rgba(240,235,226,.18); padding-bottom: .2rem;
+      transition: color .25s, border-color .25s; cursor: none;
+    }
+    .intro-cta:hover { color: var(--coral); border-color: var(--coral); }
+    .intro-cta svg { transition: transform .3s; }
+    .intro-cta:hover svg { transform: translateX(5px); }
+
     @media (max-width: 900px) {
+      #hero, #intro { padding-left: 1.5rem; padding-right: 1.5rem; }
       .home-side { display: none; }
-      .home-wrap { padding: 2rem 1.5rem 5rem; }
+      .home-logo { left: 1.5rem; }
+      .intro-disciplines { flex-direction: column; }
+      .disc { border-right: none; border-bottom: 1px solid rgba(240,235,226,.08); }
+      .disc:last-child { border-bottom: none; }
     }
   </style>
 </head>
@@ -77,28 +135,12 @@
   <div id="cdot"></div>
   <canvas id="home-cv"></canvas>
 
-  <!-- NAV -->
-  <nav id="nav" style="color:var(--home-fg)">
-    <a class="nav-logo" href="index.html" style="color:var(--home-fg)">ZM.</a>
-    <div class="nav-links" style="color:var(--home-fg)">
-      <a href="work.html">Work</a>
-      <a href="about.html">About</a>
-      <a href="lab.html">Lab</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </nav>
+  <!-- Logo — no top nav bar on home -->
+  <a class="home-logo" href="index.html">
+    <img src="LOGO.png" alt="Zara Meme logo"/>
+  </a>
 
-  <!-- HERO -->
-  <div class="home-wrap">
-    <div class="home-eyebrow rev">
-      Creative Technologist &nbsp;·&nbsp; UX &nbsp;·&nbsp; Interactive Systems &nbsp;·&nbsp; Creative Code
-    </div>
-    <!-- Letters split for repel effect — JS targets .nc -->
-    <div class="home-name rev d1" id="home-name"></div>
-    <div class="home-sub rev d2">Available for work &nbsp;·&nbsp; Based wherever ideas are good</div>
-  </div>
-
-  <!-- VERTICAL NAV -->
+  <!-- Side nav -->
   <div class="home-side">
     <a href="work.html">Work</a>
     <a href="about.html">About</a>
@@ -106,28 +148,80 @@
     <a href="contact.html">Contact</a>
   </div>
 
-  <div class="home-scroll">
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="home-eyebrow rev">
+      Creative Technologist &nbsp;·&nbsp; UX &nbsp;·&nbsp; Interactive Systems &nbsp;·&nbsp; Creative Code
+    </div>
+    <div class="home-name rev d1" id="home-name"></div>
+    <div class="home-sub rev d2">Available for work &nbsp;·&nbsp; Based wherever ideas are good</div>
+  </section>
+
+  <!-- Scroll cue (fixed, fades out after scrolling) -->
+  <button id="scroll-btn" aria-label="Scroll down">
     <div class="scroll-line"></div>
     scroll
-  </div>
+  </button>
+
+  <!-- ── INTRO (below the fold) ── -->
+  <section id="intro">
+    <div class="intro-inner">
+      <div class="intro-tag rev">What I do</div>
+      <p class="intro-statement rev d1">
+        I build experiences that live at the intersection of design, code, and <em>genuine delight.</em>
+      </p>
+      <div class="intro-disciplines rev d2">
+        <div class="disc">
+          <div class="disc-icon">✦</div>
+          <div class="disc-name">UX Design</div>
+          <div class="disc-desc">Research-led, systems-thinking design that makes complex things feel effortless.</div>
+        </div>
+        <div class="disc">
+          <div class="disc-icon">⬡</div>
+          <div class="disc-name">Interactive Systems</div>
+          <div class="disc-desc">End-to-end interaction architecture — from flow to feedback, prototype to production.</div>
+        </div>
+        <div class="disc">
+          <div class="disc-icon">◎</div>
+          <div class="disc-name">Creative Code</div>
+          <div class="disc-desc">Generative art, WebGL experiments, audio-reactive installations — code as a creative material.</div>
+        </div>
+      </div>
+      <a href="work.html" class="intro-cta rev d3">
+        View my work
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M3 9h12M11 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
 
   <script src="shared.js"></script>
   <script>
     /* ── Split name into repellable letters ── */
     const nameEl = document.getElementById('home-name');
-    ['Zarmeen', 'Azmat.'].forEach((word, wi) => {
+    ['Zara', 'Meme.'].forEach((word, wi) => {
       const span = document.createElement('span');
       word.split('').forEach(ch => {
         const s = document.createElement('span');
-        s.className = 'nc';
-        s.textContent = ch;
-        span.appendChild(s);
+        s.className = 'nc'; s.textContent = ch; span.appendChild(s);
       });
       nameEl.appendChild(span);
       if (wi === 0) nameEl.appendChild(document.createTextNode('\u00A0'));
     });
 
-    /* ── Canvas background ── */
+    /* ── Scroll button ── */
+    const scrollBtn = document.getElementById('scroll-btn');
+    scrollBtn.addEventListener('click', () => {
+      document.getElementById('intro').scrollIntoView({ behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', () => {
+      const past = window.scrollY > window.innerHeight * .35;
+      scrollBtn.style.opacity = past ? '0' : '';
+      scrollBtn.style.pointerEvents = past ? 'none' : '';
+    });
+
+    /* ── Canvas ── */
     const canvas = document.getElementById('home-cv');
     const ctx = canvas.getContext('2d');
     let W, H;
@@ -135,46 +229,32 @@
     rz(); window.addEventListener('resize', rz);
 
     const PAL = ['#D4522A','#3D7A5A','#C8861A','#3468A8','#9C4870','#2E9E7C'];
-    const orbs = PAL.map((col, i) => ({
-      x: .08 + i * .16, y: .2 + (i % 2) * .55,
-      r: .12 + i * .022, col, ph: i * 1.3, sp: .003 + i * .0005
-    }));
+    const orbs = PAL.map((col, i) => ({ x: .08 + i * .16, y: .2 + (i % 2) * .55, r: .12 + i * .022, col, ph: i * 1.3 }));
     const trail = []; let pci = 0, t = 0;
 
-    /* paint trail */
     document.addEventListener('mousemove', e => {
       trail.push({ x: e.clientX, y: e.clientY, r: 22 + Math.random() * 20,
         col: PAL[Math.floor(pci / 3) % PAL.length], born: performance.now(), ring: Math.random() > .6 });
       pci++; if (trail.length > 100) trail.splice(0, trail.length - 100);
-    });
-    document.addEventListener('click', e => {
-      for (let i = 0; i < 16; i++) {
-        const a = (i / 16) * Math.PI * 2;
-        trail.push({ x: e.clientX + Math.cos(a) * Math.random() * 70,
-          y: e.clientY + Math.sin(a) * Math.random() * 70,
-          r: 10 + Math.random() * 28, col: PAL[Math.floor(Math.random() * PAL.length)],
-          born: performance.now() - Math.random() * 200, ring: false });
-      }
-    });
-
-    /* name repulsion */
-    document.addEventListener('mousemove', e => {
       document.querySelectorAll('.nc').forEach(ch => {
         const r = ch.getBoundingClientRect();
         const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
         const dx = e.clientX - cx, dy = e.clientY - cy;
         const d = Math.sqrt(dx * dx + dy * dy), R = 160;
-        if (d < R && d > 0.5) {
-          const f = (1 - d / R) * 55;
-          ch.style.transform = `translate(${-dx/d*f}px,${-dy/d*f}px)`;
-        } else ch.style.transform = '';
+        if (d < R && d > 0.5) { const f = (1 - d / R) * 55; ch.style.transform = `translate(${-dx/d*f}px,${-dy/d*f}px)`; }
+        else ch.style.transform = '';
       });
     });
-
-    /* draw loop */
+    document.addEventListener('click', e => {
+      for (let i = 0; i < 16; i++) {
+        const a = (i / 16) * Math.PI * 2;
+        trail.push({ x: e.clientX + Math.cos(a) * Math.random() * 70, y: e.clientY + Math.sin(a) * Math.random() * 70,
+          r: 10 + Math.random() * 28, col: PAL[Math.floor(Math.random() * PAL.length)],
+          born: performance.now() - Math.random() * 200, ring: false });
+      }
+    });
     (function frame() {
-      ctx.fillStyle = '#0C0908'; ctx.fillRect(0, 0, W, H);
-      t += .008;
+      ctx.fillStyle = '#0C0908'; ctx.fillRect(0, 0, W, H); t += .008;
       orbs.forEach(o => {
         const px = o.x * W, py = (o.y + Math.sin(t + o.ph) * .04) * H;
         const pr = o.r * Math.min(W, H) * (1 + Math.sin(t * .7 + o.ph) * .08);
