@@ -96,11 +96,24 @@
     -->
     <div class="proj-grid">
 
-      <div class="pcard rev" data-cat="code">
+      <div class="pcard rev" data-cat="ux">
+        <div class="pc-bar" style="background:#3D7A5A"></div>
+        <div class="pc-cv"><canvas id="pc0" height="190"></canvas></div>
+        <div class="pc-body">
+          <div class="pc-idx">01</div>
+          <div class="pc-type" style="color:#3D7A5A">Game Design · UX · Unity</div>
+          <h3 class="pc-name">Forest Spirit Run</h3>
+          <p class="pc-desc">A cozy obstacle course where the level itself is the tutorial — mechanics taught through movement, gaps, and fireflies. No text, no prompts.</p>
+          <div class="pc-tags"><span class="ptag">Unity</span><span class="ptag">C#</span><span class="ptag">Onboarding</span><span class="ptag">Level Design</span></div>
+        </div>
+        <a href="forest-spirit-run.html" class="pc-arr">↗</a>
+      </div>
+
+      <div class="pcard rev d1" data-cat="code">
         <div class="pc-bar" style="background:#D4522A"></div>
         <div class="pc-cv"><canvas id="pc1" height="190"></canvas></div>
         <div class="pc-body">
-          <div class="pc-idx">01</div>
+          <div class="pc-idx">02</div>
           <div class="pc-type" style="color:#D4522A">Interactive Installation</div>
           <h3 class="pc-name">Particle Choir</h3>
           <p class="pc-desc">Audio-reactive installation where sound sculpts particle systems in real time. Shown at three international museums.</p>
@@ -248,8 +261,32 @@
       })();
     }
 
+    forestAnim('pc0','#3D7A5A');
     waveAnim('pc1','#D4522A'); gridAnim('pc2','#3468A8'); dotsAnim('pc3','#C8861A');
     linesAnim('pc4','#9C4870'); gridAnim('pc5','#3D7A5A'); dotsAnim('pc6','#2E9E7C');
+
+    function forestAnim(id, col) {
+      const c = document.getElementById(id); if (!c) return;
+      const ctx = c.getContext('2d');
+      function rz() { c.width = c.parentElement.clientWidth; } rz(); new ResizeObserver(rz).observe(c.parentElement);
+      const pts = Array.from({length:60},()=>({x:Math.random(),y:Math.random(),vy:-.0003-Math.random()*.0004,ph:Math.random()*Math.PI*2,r:Math.random()*2+.5}));
+      let t=0;
+      (function d(){
+        if(!document.getElementById(id))return;
+        const W=c.width,H=c.height;
+        ctx.fillStyle='#0D1A0F';ctx.fillRect(0,0,W,H);
+        t+=.01;
+        pts.forEach(p=>{
+          p.y+=p.vy; if(p.y<-.02)p.y=1.02;
+          const x=p.x*W+Math.sin(t*.4+p.ph)*12,y=p.y*H;
+          ctx.beginPath();ctx.arc(x,y,p.r,0,Math.PI*2);
+          ctx.fillStyle=Math.random()>.5?'#4A9B52':'#A8D8A0';
+          ctx.globalAlpha=.2+Math.sin(t+p.ph)*.1;ctx.fill();ctx.globalAlpha=1;
+        });
+        ctx.fillStyle='#4A9B52';ctx.globalAlpha=.12;ctx.fillRect(0,H*.82,W,H*.18);ctx.globalAlpha=1;
+        requestAnimationFrame(d);
+      })();
+    }
   </script>
 </body>
 </html>
