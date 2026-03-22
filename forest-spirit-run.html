@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forest Spirit Run — Zara Meme</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body { background: var(--light-bg); color: var(--light-fg); }
+    #cur, #cdot { color: var(--light-fg); }
+    #nav, .nav-links a { color: var(--light-fg); }
+    .nav-logo img { height: 26px; width: auto; filter: invert(1); }
+
+    /* ── PROJECT HERO ── */
+    .proj-hero {
+      min-height: 80vh; display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 9rem 3rem 4rem;
+      position: relative; overflow: hidden;
+      background: #0D1A0F;
+      color: #E8F0E4;
+    }
+    .proj-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 60%, rgba(74,155,82,.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 30%, rgba(46,158,124,.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 100%, rgba(46,90,50,.3) 0%, transparent 40%);
+    }
+    /* ✏️ HERO IMAGE: replace this canvas with an <img> or <video> of your game */
+    #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: .7; }
+
+    .proj-hero-inner { position: relative; z-index: 2; max-width: 860px; }
+    .proj-back {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(232,240,228,.35); text-decoration: none;
+      margin-bottom: 2.5rem; transition: color .2s; cursor: none;
+    }
+    .proj-back:hover { color: rgba(232,240,228,.8); }
+    .proj-back svg { transition: transform .25s; }
+    .proj-back:hover svg { transform: translateX(-4px); }
+
+    .proj-cat-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      border: 1px solid rgba(232,240,228,.15); border-radius: 100px;
+      padding: .3rem .9rem; font-size: .7rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(232,240,228,.5); margin-bottom: 1.5rem;
+    }
+    .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #4A9B52; }
+
+    .proj-title {
+      font-family: var(--fd); font-weight: 900; font-style: italic;
+      font-size: clamp(3.5rem, 8vw, 8rem); line-height: .9; letter-spacing: -.04em;
+      color: #E8F0E4; margin-bottom: 1.5rem;
+    }
+    .proj-title span { color: #4A9B52; }
+
+    .proj-logline {
+      font-size: clamp(1rem, 1.6vw, 1.25rem); line-height: 1.6;
+      color: rgba(232,240,228,.55); max-width: 560px; font-weight: 300;
+    }
+
+    /* Meta strip */
+    .proj-meta-strip {
+      display: flex; gap: 0; margin-top: 3.5rem;
+      border: 1px solid rgba(232,240,228,.1); border-radius: 12px; overflow: hidden;
+    }
+    .meta-item {
+      flex: 1; padding: 1.1rem 1.4rem;
+      border-right: 1px solid rgba(232,240,228,.1);
+    }
+    .meta-item:last-child { border-right: none; }
+    .meta-lbl { font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(232,240,228,.3); margin-bottom: .3rem; }
+    .meta-val { font-size: .9rem; font-weight: 600; color: rgba(232,240,228,.75); }
+
+    /* ── BODY ── */
+    .proj-body { max-width: 860px; margin: 0 auto; padding: 5rem 3rem 8rem; }
+
+    /* Section headers */
+    .sec-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--sage); margin-bottom: .8rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .sec-label::before { content: ''; width: 18px; height: 1.5px; background: currentColor; }
+    .sec-h {
+      font-family: var(--fd); font-weight: 900;
+      font-size: clamp(1.8rem, 3vw, 2.8rem); line-height: 1.05; letter-spacing: -.025em;
+      margin-bottom: 1.4rem;
+    }
+    .sec-h em { font-style: italic; color: var(--coral); }
+
+    /* Text blocks */
+    .proj-p { font-size: 1rem; line-height: 1.88; opacity: .65; margin-bottom: 1rem; }
+    .proj-p strong { opacity: 1; color: var(--light-fg); font-weight: 600; }
+
+    /* Pull quote */
+    .pull-q {
+      border-left: 3px solid var(--sage); padding: 1rem 0 1rem 2rem;
+      margin: 2.5rem 0;
+      font-family: var(--fd); font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.5rem); line-height: 1.4;
+      color: var(--sage); letter-spacing: -.01em;
+    }
+
+    /* Divider */
+    .divider { border: none; border-top: 1px solid rgba(26,18,9,.07); margin: 4rem 0; }
+
+    /* ── MEDIA SLOTS ── */
+    /* ✏️ Replace .media-slot with <img> or <video> tags */
+    .media-slot {
+      width: 100%; border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(26,18,9,.07);
+      background: #0D1A0F; aspect-ratio: 16/9;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: .8rem; margin: 2rem 0;
+      position: relative;
+    }
+    .media-slot-icon { font-size: 2.5rem; opacity: .25; }
+    .media-slot-label {
+      font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(232,240,228,.3);
+    }
+    .media-slot-hint {
+      font-size: .68rem; color: rgba(232,240,228,.15);
+      font-style: italic; position: absolute; bottom: 1rem; right: 1.2rem;
+    }
+    /* actual images/videos you drop in */
+    .proj-img {
+      width: 100%; border-radius: 16px; display: block;
+      border: 1px solid rgba(26,18,9,.07); margin: 2rem 0;
+      object-fit: cover;
+    }
+    .proj-video {
+      width: 100%; border-radius: 16px; display: block;
+      border: 1px solid rgba(26,18,9,.07); margin: 2rem 0;
+    }
+    .media-caption {
+      font-size: .78rem; opacity: .38; margin-top: -.8rem; margin-bottom: 2rem;
+      font-style: italic; text-align: center;
+    }
+
+    /* ── MECHANICS GRID ── */
+    .mechanics-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      background: rgba(26,18,9,.07); border: 1px solid rgba(26,18,9,.07);
+      border-radius: 16px; overflow: hidden; margin: 2rem 0;
+    }
+    .mech-cell {
+      background: var(--light-bg); padding: 2rem;
+      transition: background .3s;
+    }
+    .mech-cell:hover { background: #fff; }
+    .mech-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+    .mech-name {
+      font-family: var(--fd); font-weight: 800; font-size: 1.1rem;
+      letter-spacing: -.01em; margin-bottom: .6rem;
+    }
+    .mech-desc { font-size: .87rem; line-height: 1.7; opacity: .6; }
+
+    /* ── ONBOARDING STEPS ── */
+    .onboard-steps { display: flex; flex-direction: column; gap: 0; margin: 2.5rem 0; }
+    .onboard-step {
+      display: grid; grid-template-columns: 80px 1fr;
+      gap: 0 2rem; position: relative;
+    }
+    /* connecting line */
+    .onboard-step:not(:last-child) .step-line {
+      position: absolute; left: 39px; top: 52px; bottom: -1px;
+      width: 1px; background: rgba(26,18,9,.1);
+    }
+    .step-num-wrap { display: flex; flex-direction: column; align-items: center; padding-top: .3rem; }
+    .step-num {
+      width: 42px; height: 42px; border-radius: 50%;
+      border: 1.5px solid rgba(26,18,9,.12);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--fd); font-style: italic; font-size: 1rem;
+      color: var(--sage); flex-shrink: 0;
+      background: var(--light-bg);
+    }
+    .step-line { flex: 1; width: 1px; background: rgba(26,18,9,.08); margin-top: .5rem; }
+    .step-content { padding: 0 0 3rem; }
+    .step-name {
+      font-family: var(--fd); font-weight: 800; font-size: 1.3rem;
+      letter-spacing: -.02em; margin-bottom: .6rem;
+    }
+    .step-desc { font-size: .92rem; line-height: 1.75; opacity: .62; margin-bottom: 1.2rem; }
+
+    /* ── INSIGHT BOX ── */
+    .insight {
+      background: #0D1A0F; border-radius: 14px; padding: 1.8rem 2rem;
+      margin: 2.5rem 0; color: #E8F0E4;
+    }
+    .insight-lbl { font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #4A9B52; margin-bottom: .6rem; }
+    .insight-text { font-size: .95rem; line-height: 1.75; opacity: .75; }
+
+    /* ── REFLECTION ── */
+    .reflect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1.5rem; }
+    .reflect-card {
+      border: 1px solid rgba(26,18,9,.08); border-radius: 14px; padding: 1.5rem;
+      background: #fff; transition: transform .3s, box-shadow .3s;
+    }
+    .reflect-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+    .reflect-card-lbl { font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; opacity: .3; margin-bottom: .6rem; }
+    .reflect-card-text { font-size: .9rem; line-height: 1.7; opacity: .65; }
+
+    /* ── NEXT PROJECT ── */
+    .next-proj {
+      margin-top: 5rem; padding-top: 3rem;
+      border-top: 1px solid rgba(26,18,9,.07);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .next-lbl { font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; opacity: .3; margin-bottom: .4rem; }
+    .next-name { font-family: var(--fd); font-weight: 800; font-size: 1.4rem; }
+    .next-arrow {
+      width: 52px; height: 52px; border-radius: 50%;
+      border: 1.5px solid rgba(26,18,9,.12);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: var(--light-fg); font-size: 1.3rem;
+      transition: all .25s; cursor: none; flex-shrink: 0;
+    }
+    .next-arrow:hover { background: var(--light-fg); color: var(--light-bg); transform: rotate(45deg); }
+
+    @media (max-width: 900px) {
+      .proj-hero { padding: 8rem 1.5rem 3rem; }
+      .proj-body { padding: 3rem 1.5rem 6rem; }
+      .proj-meta-strip { flex-wrap: wrap; }
+      .meta-item { min-width: 50%; border-bottom: 1px solid rgba(232,240,228,.1); }
+      .mechanics-grid { grid-template-columns: 1fr; }
+      .reflect-grid { grid-template-columns: 1fr; }
+      .onboard-step { grid-template-columns: 54px 1fr; }
+      .next-proj { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div id="cur"></div><div id="cdot"></div>
+
+  <nav id="nav">
+    <a class="nav-logo" href="index.html"><img src="LOGO.png" alt="Zara Meme logo"/></a>
+    <div class="nav-links">
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="lab.html">Lab</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════
+       HERO
+  ══════════════════════════════════ -->
+  <div class="proj-hero">
+    <!-- ✏️ HERO VISUAL: uncomment one of these and delete the canvas below
+    <img src="images/fsr-hero.jpg" alt="Forest Spirit Run" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45;z-index:1;">
+    <video src="videos/fsr-trailer.mp4" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45;z-index:1;"></video>
+    -->
+    <canvas id="hero-canvas"></canvas>
+
+    <div class="proj-hero-inner">
+      <a href="work.html" class="proj-back rev">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12L3 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All work
+      </a>
+      <div class="proj-cat-badge rev d1"><span class="badge-dot"></span>Game Design &nbsp;·&nbsp; UX &nbsp;·&nbsp; Unity</div>
+      <h1 class="proj-title rev d2">Forest<br><span>Spirit</span> Run.</h1>
+      <p class="proj-logline rev d3">A cozy obstacle course where the level itself is the tutorial — no text, no instructions, just movement and discovery.</p>
+      <div class="proj-meta-strip rev d4">
+        <div class="meta-item"><div class="meta-lbl">Role</div><div class="meta-val">Game Designer · Developer · Art Director</div></div>
+        <div class="meta-item"><div class="meta-lbl">Tools</div><div class="meta-val">Unity · C#</div></div>
+        <div class="meta-item"><div class="meta-lbl">Duration</div><div class="meta-val">2 weeks</div></div>
+        <div class="meta-item"><div class="meta-lbl">Scope</div><div class="meta-val">Vertical slice prototype</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       BODY
+  ══════════════════════════════════ -->
+  <div class="proj-body">
+
+    <!-- THE QUESTION -->
+    <div class="rev">
+      <div class="sec-label">The Question</div>
+    </div>
+    <div class="pull-q rev d1">
+      "How can level design teach mechanics without ever stopping to explain them?"
+    </div>
+    <p class="proj-p rev d2">
+      Most games interrupt flow with pop-up tutorials and button prompts. Forest Spirit Run explores a different approach: <strong>what if the environment itself was the teacher?</strong> Every gap, platform, and hazard is a sentence in a language players learn to read by moving through it.
+    </p>
+
+    <!-- ✏️ ADD GAMEPLAY VIDEO HERE -->
+    <div class="media-slot rev d3">
+      <div class="media-slot-icon">▶</div>
+      <div class="media-slot-label">Gameplay video</div>
+      <div class="media-slot-hint">✏️ replace with &lt;video src="..."&gt;</div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- NARRATIVE -->
+    <div class="rev">
+      <div class="sec-label">Narrative &amp; Tone</div>
+      <h2 class="sec-h">Calm urgency.<br>Move <em>at your pace.</em></h2>
+    </div>
+    <p class="proj-p rev d1">
+      You play as a Kodama — a forest spirit — making its way toward a torii gate. The objective is clear: avoid obstacles, keep moving. But the narrative deliberately resists pressure. <strong>There's no timer, no score, no failure state beyond a gentle restart.</strong>
+    </p>
+    <p class="proj-p rev d2">
+      That cozy tone is a design decision, not a stylistic flourish. Low stakes give players the psychological safety to experiment — to jump into a gap on purpose, to fall into the water just to see what happens. <strong>Curiosity only emerges when failure doesn't feel costly.</strong>
+    </p>
+
+    <!-- ✏️ ADD SCREENSHOT OF KODAMA / ENVIRONMENT -->
+    <div class="media-slot rev d3">
+      <div class="media-slot-icon">🌿</div>
+      <div class="media-slot-label">Screenshot — environment</div>
+      <div class="media-slot-hint">✏️ replace with &lt;img src="..."&gt;</div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- CORE MECHANICS -->
+    <div class="rev">
+      <div class="sec-label">Core Mechanics</div>
+      <h2 class="sec-h">Four things to learn.<br>Zero instructions.</h2>
+    </div>
+    <div class="mechanics-grid rev d1">
+      <div class="mech-cell">
+        <div class="mech-icon">↑</div>
+        <div class="mech-name">Jump</div>
+        <div class="mech-desc">The foundation. Flat terrain and forgiving gaps let players feel the arc and timing with no pressure.</div>
+      </div>
+      <div class="mech-cell">
+        <div class="mech-icon">↑↑</div>
+        <div class="mech-name">Double Jump</div>
+        <div class="mech-desc">A gap that's just too wide for one jump. No hint — just an impossible-looking distance that invites a second press.</div>
+      </div>
+      <div class="mech-cell">
+        <div class="mech-icon">〜</div>
+        <div class="mech-name">Glide</div>
+        <div class="mech-desc">Wider gaps that punish both jump options. Fireflies trace the path. The mechanic reveals itself through curiosity.</div>
+      </div>
+      <div class="mech-cell">
+        <div class="mech-icon">💧</div>
+        <div class="mech-name">Hazards</div>
+        <div class="mech-desc">Water below key challenges makes failure clear and instant. A quick restart keeps the loop tight and low-friction.</div>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- ONBOARDING THROUGH LEVEL DESIGN -->
+    <div class="rev">
+      <div class="sec-label">Design Approach</div>
+      <h2 class="sec-h">The level as <em>curriculum.</em></h2>
+    </div>
+    <p class="proj-p rev d1">Each section of the level is a lesson, sequenced so that earlier mechanics scaffold the next. The progression isn't arbitrary — it mirrors how physical skills are actually learned: simple movement, then variation, then combination under pressure.</p>
+
+    <div class="onboard-steps rev d2">
+
+      <div class="onboard-step">
+        <div class="step-num-wrap">
+          <div class="step-num">1</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-name">Jump — feel the arc</div>
+          <p class="step-desc">Opening terrain is flat and forgiving. Gaps are small enough to clear casually, giving players time to feel the jump arc and timing without consequence. There's nothing to fail here — just movement to internalise.</p>
+          <!-- ✏️ ADD SCREENSHOT -->
+          <div class="media-slot" style="aspect-ratio:16/7">
+            <div class="media-slot-icon">📸</div>
+            <div class="media-slot-label">Screenshot — jump section</div>
+            <div class="media-slot-hint">✏️ replace with &lt;img src="..."&gt;</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="onboard-step">
+        <div class="step-num-wrap">
+          <div class="step-num">2</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-name">Double jump — discover through failure</div>
+          <p class="step-desc">A gap appears that looks almost crossable with a single jump — but isn't. Players who try will fall, restart, and try again. The extra input is never announced; it's waiting to be discovered. When they find it, it feels earned.</p>
+          <!-- ✏️ ADD SCREENSHOT -->
+          <div class="media-slot" style="aspect-ratio:16/7">
+            <div class="media-slot-icon">📸</div>
+            <div class="media-slot-label">Screenshot — double jump section</div>
+            <div class="media-slot-hint">✏️ replace with &lt;img src="..."&gt;</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="onboard-step">
+        <div class="step-num-wrap">
+          <div class="step-num">3</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-name">Glide — follow the fireflies</div>
+          <p class="step-desc">A much wider gap. Jump fails. Double jump fails. But a trail of fireflies traces a slow, floating arc across the chasm — a visual suggestion that something else is possible. Players hold the jump button and feel the glide click into place.</p>
+          <!-- ✏️ ADD SCREENSHOT -->
+          <div class="media-slot" style="aspect-ratio:16/7">
+            <div class="media-slot-icon">📸</div>
+            <div class="media-slot-label">Screenshot — glide section</div>
+            <div class="media-slot-hint">✏️ replace with &lt;img src="..."&gt;</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="insight rev">
+      <div class="insight-lbl">Design Principle</div>
+      <div class="insight-text">Each mechanic is introduced through a problem the player can't solve with what they already know. The gap teaches the jump. The impossible gap teaches the double jump. The impossible-impossible gap teaches the glide. Sequence is curriculum.</div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- PLAYTESTING -->
+    <div class="rev">
+      <div class="sec-label">Playtesting &amp; Iteration</div>
+      <h2 class="sec-h">What the players <em>actually did.</em></h2>
+    </div>
+    <p class="proj-p rev d1">
+      Testing revealed a recurring pattern: players were triggering the double jump too early — pressing it at the peak of the first jump rather than on the way down, causing them to barely clear gaps or miss entirely. The mechanic wasn't broken; the <strong>feedback was missing</strong>.
+    </p>
+    <p class="proj-p rev d2">
+      The fix wasn't to add a tutorial — it was to make the mid-air state more readable. Jump timing and visual feedback were adjusted to better communicate momentum and position in the arc. After iteration, clearance rates improved significantly without a single word of instruction added.
+    </p>
+
+    <hr class="divider"/>
+
+    <!-- REFLECTION -->
+    <div class="rev">
+      <div class="sec-label">Reflection</div>
+      <h2 class="sec-h">What I learned.</h2>
+    </div>
+    <div class="reflect-grid rev d1">
+      <div class="reflect-card">
+        <div class="reflect-card-lbl">What worked</div>
+        <div class="reflect-card-text">The level-as-curriculum structure landed. Players discovered all four mechanics through play, with no text UI. The cozy tone genuinely lowered stakes and encouraged experimentation.</div>
+      </div>
+      <div class="reflect-card">
+        <div class="reflect-card-lbl">What I'd change</div>
+        <div class="reflect-card-text">Given more time: richer audio-visual cues at each transition, alternative level paths for different player paces, and deeper environmental storytelling to reinforce the Kodama narrative.</div>
+      </div>
+      <div class="reflect-card">
+        <div class="reflect-card-lbl">The bigger lesson</div>
+        <div class="reflect-card-text">Feedback is design. The double jump iteration proved that the problem wasn't the mechanic — it was the information gap between what the game was doing and what the player could see.</div>
+      </div>
+      <div class="reflect-card">
+        <div class="reflect-card-lbl">What this connects to</div>
+        <div class="reflect-card-text">The same principles that make good onboarding in games — clear feedback, low stakes, sequenced challenge — are the same principles that make good UX. Different medium, same human.</div>
+      </div>
+    </div>
+
+    <!-- NEXT PROJECT -->
+    <div class="next-proj rev">
+      <div>
+        <div class="next-lbl">Next project</div>
+        <!-- ✏️ Update this link when you add more projects -->
+        <div class="next-name">Coming soon →</div>
+      </div>
+      <a href="work.html" class="next-arrow">↗</a>
+    </div>
+
+  </div><!-- /proj-body -->
+
+  <script src="shared.js"></script>
+  <script>
+    /* ── Hero canvas: ambient forest particles ── */
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H;
+    function rz() { W = canvas.width = canvas.parentElement.clientWidth; H = canvas.height = canvas.parentElement.clientHeight; }
+    rz(); window.addEventListener('resize', rz);
+
+    const particles = Array.from({ length: 120 }, () => ({
+      x: Math.random(), y: Math.random(),
+      size: Math.random() * 2.5 + .5,
+      speed: .0002 + Math.random() * .0004,
+      phase: Math.random() * Math.PI * 2,
+      col: Math.random() > .6 ? '#4A9B52' : Math.random() > .5 ? '#2E9E7C' : '#A8D8A0'
+    }));
+
+    let t = 0;
+    (function frame() {
+      ctx.clearRect(0, 0, W, H);
+      t += .008;
+      particles.forEach(p => {
+        p.y -= p.speed;
+        if (p.y < -.02) p.y = 1.02;
+        const x = p.x * W + Math.sin(t * .5 + p.phase) * 18;
+        const y = p.y * H;
+        const alpha = .15 + Math.sin(t + p.phase) * .08;
+        ctx.beginPath();
+        ctx.arc(x, y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.col;
+        ctx.globalAlpha = alpha;
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(frame);
+    })();
+  </script>
+</body>
+</html>
