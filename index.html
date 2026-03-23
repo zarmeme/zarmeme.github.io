@@ -23,8 +23,8 @@
       display: flex; flex-direction: column; gap: 1.6rem; z-index: 10;
     }
     .home-side a {
-      font-size: .8rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
-      color: rgba(240,235,226,.5); writing-mode: vertical-rl;
+      font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(240,235,226,.4); writing-mode: vertical-rl;
       text-decoration: none; transition: color .25s; cursor: none;
     }
     .home-side a:hover { color: var(--home-fg); }
@@ -33,7 +33,7 @@
     #hero {
       position: relative; z-index: 2; min-height: 100vh;
       display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 3rem 3rem 15rem; pointer-events: none;
+      padding: 3rem 3rem 10rem; pointer-events: none;
     }
     .home-eyebrow {
       font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
@@ -43,7 +43,7 @@
     .home-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--coral); }
     .home-name {
       font-family: var(--fd); font-weight: 900; font-style: italic;
-      font-size: clamp(5rem, 15vw, 14rem);
+      font-size: clamp(5rem, 13vw, 12rem);
       line-height: .9; letter-spacing: -.04em;
       display: flex; flex-wrap: wrap; column-gap: .22em;
     }
@@ -58,8 +58,8 @@
     #scroll-btn {
       position: fixed; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: .5rem;
-      font-size: .8rem; letter-spacing: .18em; text-transform: uppercase;
-      color: rgba(240,235,226,.5); z-index: 10;
+      font-size: .63rem; letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(240,235,226,.4); z-index: 10;
       background: none; border: none; cursor: none; font-family: var(--fb);
       transition: opacity .5s, color .3s;
     }
@@ -79,8 +79,8 @@
     }
     .intro-inner { max-width: 860px; }
     .intro-tag {
-      font-size: .8rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
-      color: rgba(240,235,226,.5); margin-bottom: 2.5rem;
+      font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+      color: rgba(240,235,226,.3); margin-bottom: 2.5rem;
       display: flex; align-items: center; gap: .7rem;
     }
     .intro-tag::before { content: ''; width: 24px; height: 1px; background: var(--coral); }
@@ -165,23 +165,23 @@
     <div class="intro-inner">
       <div class="intro-tag rev">What I do</div>
       <p class="intro-statement rev d1">
-        I build experiences that live at the intersection of design, art, technology, and <em>  FUN!</em>
+        I build experiences that live at the intersection of design, code, and <em>genuine delight.</em>
       </p>
       <div class="intro-disciplines rev d2">
         <div class="disc">
           <div class="disc-icon">✦</div>
           <div class="disc-name">UX Design</div>
-          <div class="disc-desc">Research-led design thinking that makes complex things feel effortless.</div>
+          <div class="disc-desc">Research-led, systems-thinking design that makes complex things feel effortless.</div>
         </div>
         <div class="disc">
           <div class="disc-icon">⬡</div>
-          <div class="disc-name">Interactive Media Systems</div>
-          <div class="disc-desc">End-to-end interaction architecture, from flow to feedback and prototype to production.</div>
+          <div class="disc-name">Interactive Systems</div>
+          <div class="disc-desc">End-to-end interaction architecture — from flow to feedback, prototype to production.</div>
         </div>
         <div class="disc">
           <div class="disc-icon">◎</div>
-          <div class="disc-name">Visual Storytelling</div>
-          <div class="disc-desc">Animations, Generative art, Creative Coding Experiments, Data Visualization. Just creating fun stuff.</div>
+          <div class="disc-name">Creative Code</div>
+          <div class="disc-desc">Generative art, WebGL experiments, audio-reactive installations — code as a creative material.</div>
         </div>
       </div>
       <a href="work.html" class="intro-cta rev d3">
