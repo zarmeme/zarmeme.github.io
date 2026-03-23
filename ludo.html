@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>LUDO — Zara Meme</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="proj.css"/>
+  <style>
+    body{background:var(--light-bg);color:var(--light-fg);}
+    #nav,.nav-links a{color:var(--light-fg);}
+    .nav-logo img{filter:invert(1);}
+    .cs-label{color:var(--gold);}
+    .cs-h em,.cs-pull{color:var(--gold);}
+    .cs-pull{border-color:var(--gold);}
+    .cs-beat-num{color:var(--gold);}
+    .cs-next-arrow{color:var(--light-fg);}
+    .cs-next-arrow:hover{background:var(--light-fg);color:var(--light-bg);transform:rotate(45deg);}
+
+    /* Generative hero canvas */
+    #ludo-cv{position:absolute;inset:0;width:100%;height:100%;}
+
+    /* Image placeholder slots */
+    .img-slot{width:100%;border-radius:16px;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7rem;margin:2rem 0;background:#FDF8F2;border:1.5px dashed rgba(26,18,9,.12);position:relative;}
+    .img-slot-icon{font-size:2.2rem;opacity:.2;}
+    .img-slot-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.28;}
+    .img-slot-hint{position:absolute;bottom:.9rem;right:1.1rem;font-size:.66rem;opacity:.18;font-style:italic;}
+    .img-slot-2up{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin:2rem 0;}
+    .img-slot-2up .img-slot{margin:0;}
+  </style>
+</head>
+<body>
+  <div id="cur"></div><div id="cdot"></div>
+  <nav id="nav">
+    <a class="nav-logo" href="index.html"><img src="LOGO.png" alt="Zara Meme"/></a>
+    <div class="nav-links">
+      <a href="work.html">Work</a><a href="about.html">About</a>
+      <a href="lab.html">Lab</a><a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO: generative canvas (swap for your key frame when ready) -->
+  <section class="cs-hero" style="background:#180E08;min-height:88vh;">
+    <canvas id="ludo-cv"></canvas>
+    <div class="cs-hero-overlay" style="background:linear-gradient(to top,rgba(24,14,8,.97) 0%,rgba(24,14,8,.55) 55%,rgba(24,14,8,.15) 100%)"></div>
+    <div class="cs-hero-inner">
+      <a href="work.html" class="cs-back rev">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12L3 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All Work
+      </a>
+      <div class="cs-eyebrow rev d1">
+        <span class="cs-dot" style="background:var(--gold)"></span>
+        3D Animated Short · Character Design · Storytelling
+      </div>
+      <h1 class="cs-title rev d2">LUDO.</h1>
+      <p class="cs-logline rev d3">An animated short about sibling love and sacrifice — set on a Ludo board, the game that holds every Pakistani family together.</p>
+      <div class="cs-meta rev d4">
+        <div class="cs-meta-item"><div class="cs-meta-lbl">My Role</div><div class="cs-meta-val">Animator · Character Designer · Director</div></div>
+        <div class="cs-meta-item"><div class="cs-meta-lbl">Medium</div><div class="cs-meta-val">3D Animation</div></div>
+        <div class="cs-meta-item"><div class="cs-meta-lbl">Theme</div><div class="cs-meta-val">Sacrifice · Sibling bond · Family</div></div>
+        <div class="cs-meta-item"><div class="cs-meta-lbl">Setting</div><div class="cs-meta-val">A Ludo board in a Pakistani street</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-body">
+
+    <div class="cs-pull rev">"In every Pakistani household, there's a Ludo board that's been played on for decades. The game knows every fight and every reconciliation."</div>
+    <p class="cs-p rev d1">LUDO is a 3D animated short about selfless love — set inside one of the most familiar objects in Pakistani domestic life. The story follows a sister and her younger brother, both depicted as Ludo game pieces journeying across the board. When the brother is threatened by a rolling dice, the sister sacrifices her own freedom — her chance to finish the game — to save him.</p>
+    <p class="cs-p rev d2">The film doesn't explain the metaphor. The Ludo board as a stand-in for family life, the dice as fate, the chains binding both siblings to a yellow house — it all works through <strong>visual language alone</strong>. No dialogue. Just character performance, sound design, and the mechanics of a game everyone already knows.</p>
+
+    <!-- Swap for your key frame / hero render -->
+    <div class="img-slot rev">
+      <div class="img-slot-icon">🎬</div>
+      <div class="img-slot-label">Replace with key frame / hero render</div>
+      <div class="img-slot-hint">→ &lt;img src="images/ludo-hero.jpg" class="cs-img"&gt;</div>
+    </div>
+
+    <hr class="cs-hr"/>
+
+    <!-- CHARACTER DESIGN -->
+    <div class="rev"><div class="cs-label">Character Design</div>
+    <h2 class="cs-h">Game pieces that <em>carry grief.</em></h2></div>
+    <p class="cs-p rev d1">The central design challenge was making characters that are unmistakably Ludo pieces — toy-like, abstracted, their bodies literally game tokens — while still being able to convey genuine, painful emotion. The solution was hyper-expressive faces on simplified bodies: large eyes capable of full expression sheets, minimal limbs that could still communicate determination, fear, and sacrifice.</p>
+    <p class="cs-p rev d2">Both characters went through full design pipelines — reference research, initial sketches exploring how much "human" to add to an object, proportion studies, and final character sheets including multi-angle views and expression ranges.</p>
+
+    <!-- Swap with your character sheet images -->
+    <div class="img-slot-2up rev d2">
+      <div class="img-slot">
+        <div class="img-slot-icon">👧</div>
+        <div class="img-slot-label">Sister — character sheet</div>
+        <div class="img-slot-hint">→ ludo-sister.jpg</div>
+      </div>
+      <div class="img-slot">
+        <div class="img-slot-icon">👦</div>
+        <div class="img-slot-label">Brother — character sheet</div>
+        <div class="img-slot-hint">→ ludo-brother.jpg</div>
+      </div>
+    </div>
+    <p class="cs-cap rev">Sister (left): braided hair, gold earrings, dupatta — 5-expression sheet including awe-struck, happy, sad, angry, determined. Brother (right): cap, sunglasses — 5-expression sheet including sad, crying, shocked, angry, neutral.</p>
+
+    <hr class="cs-hr"/>
+
+    <!-- ENVIRONMENT -->
+    <div class="rev"><div class="cs-label">Environment</div>
+    <h2 class="cs-h">A Ludo board in <em>a Pakistani street.</em></h2></div>
+    <p class="cs-p rev d1">The environment translates the physical Ludo board into a fully realised 3D world. Surrounding the playing field is a stylised Pakistani street — Urdu graffiti on timber hoardings, hand-painted signs, the specific clutter of a South Asian urban lane. The safe houses at each corner of the board are rendered as yellow structures with corrugated roofs. The paths between them are the same vivid yellow of a real Ludo board.</p>
+
+    <!-- Swap with your environment render -->
+    <div class="img-slot rev d2" style="aspect-ratio:16/7;">
+      <div class="img-slot-icon">🏙️</div>
+      <div class="img-slot-label">Replace with environment render</div>
+      <div class="img-slot-hint">→ ludo-environment.jpg</div>
+    </div>
+
+    <hr class="cs-hr"/>
+
+    <!-- STORY BEATS -->
+    <div class="rev"><div class="cs-label">Story Structure</div>
+    <h2 class="cs-h">Six beats. <em>One sacrifice.</em></h2></div>
+    <div class="cs-beats rev d1">
+      <div class="cs-beat">
+        <div class="cs-beat-num">1</div>
+        <div class="cs-beat-body">
+          <div class="cs-beat-title">Established — both trapped</div>
+          <div class="cs-beat-text">Sister and brother are chained inside the yellow safe house. Both sad. The camera holds on the sister's eyes — wide, alert — as she spots a dice on the ground nearby.</div>
+        </div>
+      </div>
+      <div class="cs-beat">
+        <div class="cs-beat-num">2</div>
+        <div class="cs-beat-body">
+          <div class="cs-beat-title">The dice rolls — and frees her</div>
+          <div class="cs-beat-text">The dice lands on six. The sister's chains break. She is free to move. The brother remains chained behind her, watching through the doorway.</div>
+        </div>
+      </div>
+      <div class="cs-beat">
+        <div class="cs-beat-num">3</div>
+        <div class="cs-beat-body">
+          <div class="cs-beat-title">Temptation — the crown building</div>
+          <div class="cs-beat-text">She walks out onto the path and sees the crown building in the distance — the finish, the goal, freedom. She begins moving toward it. This is the moment of almost-choice.</div>
+        </div>
+      </div>
+      <div class="cs-beat">
+        <div class="cs-beat-num">4</div>
+        <div class="cs-beat-body">
+          <div class="cs-beat-title">She looks back</div>
+          <div class="cs-beat-text">Something makes her turn. A new dice is falling — heading directly for the safe house where her brother sits, still chained. A six would send him off the board entirely.</div>
+        </div>
+      </div>
+      <div class="cs-beat">
+        <div class="cs-beat-num">5</div>
+        <div class="cs-beat-body">
+          <div class="cs-beat-title">The sacrifice</div>
+          <div class="cs-beat-text">Determined face. She runs back. Launches herself at the falling dice, deflecting it with her head — friction sparks, blood on her forehead. She flies off the edge of the board.</div>
+        </div>
+      </div>
+      <div class="cs-beat">
+        <div class="cs-beat-num">6</div>
+        <div class="cs-beat-body">
+          <div class="cs-beat-title">The brother is free</div>
+          <div class="cs-beat-text">The deflected dice lands on six. His chains break. He steps outside — and sees a cracked Ludo piece lying on the floor beside a table leg. He understands. Fade out.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Swap with storyboard pages -->
+    <div class="img-slot rev" style="aspect-ratio:4/3;">
+      <div class="img-slot-icon">📋</div>
+      <div class="img-slot-label">Replace with storyboard pages</div>
+      <div class="img-slot-hint">→ ludo-storyboard.jpg</div>
+    </div>
+
+    <hr class="cs-hr"/>
+
+    <div class="rev"><div class="cs-label">Reflection</div>
+    <h2 class="cs-h">What I learned.</h2></div>
+    <div class="cs-cards col2 rev d1">
+      <div class="cs-card">
+        <div class="cs-card-title">Emotion through abstraction</div>
+        <div class="cs-card-text">Making a Ludo piece cry is genuinely harder than making a human character cry. Abstracted characters force precision — every element of the face has to work much harder because there's so little else to carry the emotion.</div>
+      </div>
+      <div class="cs-card">
+        <div class="cs-card-title">Cultural specificity grounds the universal</div>
+        <div class="cs-card-text">Setting the story in a Pakistani street, using a game specifically tied to South Asian family culture — it transforms a universal story about sibling love into something rooted and particular. The specificity is what makes it feel real.</div>
+      </div>
+      <div class="cs-card">
+        <div class="cs-card-title">No dialogue forces better storytelling</div>
+        <div class="cs-card-text">Without words, every narrative beat has to be communicated through composition, performance, and sound. That constraint made me a more precise visual storyteller — I couldn't rely on a character explaining what they felt.</div>
+      </div>
+      <div class="cs-card">
+        <div class="cs-card-title">Where I'd take it next</div>
+        <div class="cs-card-text">A companion short from the brother's perspective — the same sacrifice, witnessed differently. What does freedom feel like when you know what it cost? That's the film I want to make next.</div>
+      </div>
+    </div>
+
+    <div class="cs-next rev">
+      <div>
+        <div class="cs-next-lbl">Next project</div>
+        <div class="cs-next-name">Forest Spirit Run →</div>
+      </div>
+      <a href="forest-spirit-run.html" class="cs-next-arrow">↗</a>
+    </div>
+  </div>
+
+  <script src="shared.js"></script>
+  <script>
+    /* Generative Ludo hero — coloured orbs suggesting game pieces */
+    const cv = document.getElementById('ludo-cv');
+    const ctx = cv.getContext('2d');
+    const cols = ['#E8A838','#D4522A','#3D7A5A','#3468A8'];
+    function rz(){cv.width=cv.parentElement.clientWidth;cv.height=cv.parentElement.clientHeight;}
+    rz();window.addEventListener('resize',rz);
+    const pieces = Array.from({length:18},(_,i)=>({x:.1+Math.random()*.8,y:.1+Math.random()*.8,vx:(Math.random()-.5)*.0007,vy:(Math.random()-.5)*.0007,r:.03+Math.random()*.035,col:cols[i%4],ph:Math.random()*Math.PI*2}));
+    let t=0;
+    (function frame(){
+      const W=cv.width,H=cv.height;
+      ctx.clearRect(0,0,W,H);
+      /* grid */
+      ctx.strokeStyle='rgba(232,168,56,.05)';ctx.lineWidth=1;
+      for(let i=1;i<8;i++){ctx.beginPath();ctx.moveTo(i/8*W,0);ctx.lineTo(i/8*W,H);ctx.stroke();ctx.beginPath();ctx.moveTo(0,i/8*H);ctx.lineTo(W,i/8*H);ctx.stroke();}
+      t+=.007;
+      pieces.forEach(p=>{
+        p.x+=p.vx;p.y+=p.vy;
+        if(p.x<.05||p.x>.95)p.vx*=-1;
+        if(p.y<.05||p.y>.95)p.vy*=-1;
+        const px=p.x*W,py=p.y*H,pr=p.r*Math.min(W,H);
+        const g=ctx.createRadialGradient(px,py,0,px,py,pr);
+        g.addColorStop(0,p.col+'44');g.addColorStop(1,p.col+'00');
+        ctx.fillStyle=g;ctx.beginPath();ctx.arc(px,py,pr,0,Math.PI*2);ctx.fill();
+      });
+      requestAnimationFrame(frame);
+    })();
+  </script>
+</body>
+</html>

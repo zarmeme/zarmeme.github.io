@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Androon Lahore — Zara Meme</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="proj.css"/>
+  <style>
+    body{background:var(--light-bg);color:var(--light-fg);}
+    #nav,.nav-links a{color:var(--light-fg);}
+    .nav-logo img{filter:invert(1);}
+    .cs-label{color:var(--coral);}
+    .cs-h em,.cs-pull{color:var(--coral);}
+    .cs-pull{border-color:var(--coral);}
+    .cs-beat-num{color:var(--coral);}
+    .cs-next-arrow{color:var(--light-fg);}
+    .cs-next-arrow:hover{background:var(--light-fg);color:var(--light-bg);transform:rotate(45deg);}
+  </style>
+</head>
+<body>
+  <div id="cur"></div><div id="cdot"></div>
+  <nav id="nav">
+    <a class="nav-logo" href="index.html"><img src="LOGO.png" alt="Zara Meme"/></a>
+    <div class="nav-links">
+      <a href="work.html">Work</a><a href="about.html">About</a>
+      <a href="lab.html">Lab</a><a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO: portfolio_17.jpg — UE5 render of Androon Lahore walled city street -->
+  <section class="cs-hero">
+    <img class="cs-hero-img" src="images/portfolio_17.jpg" alt="Androon Lahore — Unreal Engine 5 street render"/>
+    <div class="cs-hero-overlay"></div>
+    <div class="cs-hero-inner">
+      <a href="work.html" class="cs-back rev">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12L3 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All Work
+      </a>
+      <div class="cs-eyebrow rev d1">
+        <span class="cs-dot" style="background:var(--coral)"></span>
+        Photogrammetry · Unreal Engine 5 · Cultural Heritage · FRAG Games
+      </div>
+      <h1 class="cs-title rev d2">Androon<br>Lahore.</h1>
+      <p class="cs-logline rev d3">A photorealistic real-time replica of Lahore's 2,000-year-old walled city — built to preserve what's there before time changes it further.</p>
+      <div class="cs-meta rev d4">
+        <div class="cs-meta-item"><div class="cs-meta-lbl">My Role</div><div class="cs-meta-val">Lead Photogrammetry Artist</div></div>
+        <div class="cs-meta-item"><div class="cs-meta-lbl">Studio</div><div class="cs-meta-val">FRAG Games</div></div>
+        <div class="cs-meta-item"><div class="cs-meta-lbl">Tools</div><div class="cs-meta-val">Unreal Engine 5 · RealityCapture · Blender</div></div>
+        <div class="cs-meta-item"><div class="cs-meta-lbl">Output</div><div class="cs-meta-val">Real-time interactive environment</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-body">
+
+    <div class="cs-pull rev">"Androon Lahore is one of the oldest inhabited places on earth. It's also changing faster than anyone is documenting it."</div>
+    <p class="cs-p rev d1">As Lead Photogrammetry Artist at FRAG Games, I designed and built the entire photogrammetry pipeline for this project from scratch. There was no existing workflow to follow — I researched, tested, and developed a system that could take hundreds of photographs taken on the actual streets of Androon Lahore and produce optimised, high-fidelity 3D assets ready for real-time rendering in Unreal Engine 5.</p>
+    <p class="cs-p rev d2">The result is an <strong>immersive digital replica</strong> of one of Pakistan's most architecturally and culturally significant locations — a platform for education, tourism, and heritage preservation that can reach audiences who could never visit the physical city, and document what exists now for future generations.</p>
+
+    <hr class="cs-hr"/>
+
+    <!-- PIPELINE -->
+    <div class="rev"><div class="cs-label">The Pipeline</div>
+    <h2 class="cs-h">From a photograph <em>to a real-time world.</em></h2></div>
+    <p class="cs-p rev d1">I developed this four-stage workflow from the ground up. The key challenge was maintaining photographic fidelity throughout — especially the intricate Mughal-era architectural details and the textural complexity of centuries-old brick and timber — while keeping assets performant enough to render in real time.</p>
+
+    <div class="cs-steps rev d2">
+      <div class="cs-step">
+        <div class="cs-step-num">01</div>
+        <div class="cs-step-title">Image Capture</div>
+        <div class="cs-step-text">High-resolution overlapping photography of architectural elements and individual objects on-location inside the walled city. Calibration targets used for colour accuracy.</div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">02</div>
+        <div class="cs-step-title">Data Processing</div>
+        <div class="cs-step-text">RealityCapture used to generate dense 3D point clouds and meshes from image datasets — extracting geometry, normals, and photogrammetric textures automatically.</div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">03</div>
+        <div class="cs-step-title">Optimisation</div>
+        <div class="cs-step-text">Geometry cleanup, polygon reduction, and texture baking in Blender — balancing visual fidelity with real-time performance requirements for Unreal Engine.</div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">04</div>
+        <div class="cs-step-title">Scene Assembly</div>
+        <div class="cs-step-text">Full environment build in UE5 — dynamic and baked lighting, volumetric dust, atmospheric fog, foliage, and animated elements bringing every street to life.</div>
+      </div>
+    </div>
+
+    <!-- portfolio_18.jpg: Photogrammetry workflow — real photos alongside 3D model outputs -->
+    <img src="images/portfolio_18.jpg" alt="Photogrammetry workflow — from on-location photographs to 3D assets" class="cs-img rev"/>
+    <p class="cs-cap rev">The photogrammetry pipeline in action: on-location photography, RealityCapture processing, and optimised 3D assets ready for UE5.</p>
+
+    <hr class="cs-hr"/>
+
+    <!-- ENVIRONMENT -->
+    <div class="rev"><div class="cs-label">The Result</div>
+    <h2 class="cs-h">Lahore's streets, <em>rendered in real time.</em></h2></div>
+    <p class="cs-p rev d1">The final environment captures the atmospheric density of Androon Lahore — narrow alleys, centuries-old brick facades, hand-painted shopfronts, and the chaotic energy of a city that has been continuously inhabited since before the Roman Empire. Dynamic and baked lighting recreate the quality of light in a city where buildings are so close together that sunlight arrives in narrow, dramatic shafts.</p>
+
+    <!-- portfolio_09.png: 6 Androon Lahore UE5 environment renders -->
+    <img src="images/portfolio_09.png" alt="Androon Lahore — Unreal Engine 5 environment renders" class="cs-img rev d2"/>
+    <p class="cs-cap rev">Final Unreal Engine 5 renders — streets, archways, courtyards, and architectural details of Androon Lahore.</p>
+
+    <hr class="cs-hr"/>
+
+    <div class="rev"><div class="cs-label">Reflection</div>
+    <h2 class="cs-h">What I learned.</h2></div>
+    <div class="cs-cards col2 rev d1">
+      <div class="cs-card">
+        <div class="cs-card-title">Pipeline design is design work</div>
+        <div class="cs-card-text">Building a photogrammetry workflow from scratch required the same iterative thinking as any design problem — hypothesis, test, refine. The technical and creative challenges were inseparable.</div>
+      </div>
+      <div class="cs-card">
+        <div class="cs-card-title">Documentation as preservation</div>
+        <div class="cs-card-text">Every asset I captured is also a permanent record of Androon Lahore as it exists in this decade. That responsibility sharpened my attention to detail in ways that a purely technical brief never would have.</div>
+      </div>
+      <div class="cs-card">
+        <div class="cs-card-title">The performance-fidelity tension</div>
+        <div class="cs-card-text">Real-time rendering forces constant trade-offs between photographic quality and frame rate. Learning to make those calls — what to preserve, what to simplify — is a skill I developed on this project.</div>
+      </div>
+      <div class="cs-card">
+        <div class="cs-card-title">What comes next</div>
+        <div class="cs-card-text">Guided narrative tours, educational overlays connecting visible architecture to historical context, and an accessibility layer so people who can't visit the physical city can still experience it fully.</div>
+      </div>
+    </div>
+
+    <div class="cs-next rev">
+      <div>
+        <div class="cs-next-lbl">Next project</div>
+        <div class="cs-next-name">Fading White →</div>
+      </div>
+      <a href="fading-white.html" class="cs-next-arrow">↗</a>
+    </div>
+  </div>
+
+  <script src="shared.js"></script>
+</body>
+</html>

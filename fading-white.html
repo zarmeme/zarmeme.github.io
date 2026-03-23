@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Fading White — Zara Meme</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="proj.css"/>
+  <style>
+    /* Dark hero, light body */
+    body{background:#0D1A0D;color:#E8F0E8;}
+    #nav,.nav-links a{color:#E8F0E8;}
+    .nav-logo img{height:26px;}
+    nav::before{background:rgba(13,26,13,.88)!important;}
+
+    /* Body transitions to cream */
+    .cs-body-wrap{background:var(--light-bg);color:var(--light-fg);}
+    .cs-body-wrap .cs-label{color:var(--sage);}
+    .cs-body-wrap .cs-h em{color:var(--sage);}
+    .cs-body-wrap .cs-pull{color:var(--sage);border-color:var(--sage);}
+    .cs-body-wrap .cs-beat-num{color:var(--sage);}
+    .cs-body-wrap .cs-next-arrow{color:var(--light-fg);}
+    .cs-body-wrap .cs-next-arrow:hover{background:var(--light-fg);color:var(--light-bg);transform:rotate(45deg);}
+    .cs-body-wrap .cs-img{border-color:rgba(26,18,9,.06);}
+    .cs-body-wrap .cs-hr{border-color:rgba(26,18,9,.07);}
+    .cs-body-wrap .cs-next{border-color:rgba(26,18,9,.07);}
+
+    /* Symbol block — dark inside cream page */
+    .sym-block{background:#0D1A0D;border-radius:18px;padding:2.8rem;margin:2.5rem 0;color:#E8F0E8;}
+    .sym-row{display:flex;gap:1.6rem;align-items:center;margin-bottom:1.4rem;}
+    .sym-row:last-child{margin-bottom:0;}
+    .sym-swatch{width:44px;height:44px;border-radius:10px;flex-shrink:0;}
+    .sym-title{font-family:var(--fd);font-weight:700;font-size:1.05rem;margin-bottom:.2rem;}
+    .sym-text{font-size:.84rem;opacity:.5;line-height:1.6;}
+  </style>
+</head>
+<body>
+  <div id="cur"></div><div id="cdot"></div>
+  <nav id="nav">
+    <a class="nav-logo" href="index.html"><img src="LOGO.png" alt="Zara Meme"/></a>
+    <div class="nav-links">
+      <a href="work.html">Work</a><a href="about.html">About</a>
+      <a href="lab.html">Lab</a><a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO: portfolio_13.jpg — the chadar/red cloth key art illustration -->
+  <section class="cs-hero">
+    <img class="cs-hero-img" src="images/portfolio_13.jpg" alt="Fading White — key art"/>
+    <div class="cs-hero-overlay" style="background:linear-gradient(to top,rgba(13,26,13,.97) 0%,rgba(13,26,13,.6) 55%,rgba(13,26,13,.15) 100%)"></div>
+    <div class="cs-hero-inner">
+      <a href="work.html" class="cs-back rev">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12L3 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All Work
+      </a>
+      <div class="cs-eyebrow rev d1">
+        <span class="cs-dot" style="background:#fff"></span>
+        Animated Short · Social Advocacy · Writer · Director · Producer
+      </div>
+      <h1 class="cs-title rev d2">Fading<br>White.</h1>
+      <p class="cs-logline rev d3">A 2D animated short about forced religious conversions in Pakistan — told through two colours, a white doll, and the violence of one swallowing the other.</p>
+      <div class="cs-meta rev d4">
+        <div class="cs-meta-item"><div class="cs-meta-lbl">My Role</div><div class="cs-meta-val">Writer · Producer · Director</div></div>
+        <div class="cs-meta-item"><div class="cs-meta-lbl">Medium</div><div class="cs-meta-val">2D Animation</div></div>
+        <div class="cs-meta-item"><div class="cs-meta-lbl">Theme</div><div class="cs-meta-val">Forced conversions · Religious intolerance</div></div>
+        <div class="cs-meta-item"><div class="cs-meta-lbl">Visual concept</div><div class="cs-meta-val">Two colours only — green & white</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-body-wrap">
+    <div class="cs-body">
+
+      <div class="cs-pull rev">"Why is the white in our flag being replaced by our coldbloodedness?"</div>
+      <p class="cs-p rev d1">Fading White is a short animated film addressing forced religious conversions in Pakistan — a human rights crisis that disproportionately affects Hindu, Christian, and Sikh minorities, particularly young women and girls who are kidnapped, married off, and falsely registered as willing converts.</p>
+      <p class="cs-p rev d2">I wrote, directed, and produced the film entirely alone. I wanted to create something that could make someone feel the weight of the issue who might otherwise scroll past a news headline. <strong>The answer was abstraction and symbol</strong> — reducing the crisis to its most fundamental visual argument, and making that argument impossible to look away from.</p>
+
+      <hr class="cs-hr"/>
+
+      <!-- CONCEPT -->
+      <div class="rev"><div class="cs-label">The Concept</div>
+      <h2 class="cs-h">A flag as <em>the whole argument.</em></h2></div>
+      <p class="cs-p rev d1">Pakistan's flag divides into two colours: green for the Muslim majority, and white for all religious minorities. The entire film is an extension of that symbol. What does it mean when the white disappears? What does it look like when a country erases a part of itself — not through violence, but through the slow, smiling pressure of conformity?</p>
+
+      <div class="sym-block rev d2">
+        <div class="sym-row">
+          <div class="sym-swatch" style="background:#2E5E2E"></div>
+          <div><div class="sym-title">Green — Dominance</div><div class="sym-text">The Muslim majority depicted as towering, faceless titan figures. Massive, cheerful, surrounding. Power that doesn't need to announce itself.</div></div>
+        </div>
+        <div class="sym-row">
+          <div class="sym-swatch" style="background:#f5f5f0;border:1px solid rgba(255,255,255,.2)"></div>
+          <div><div class="sym-title">White — Vulnerability</div><div class="sym-text">The protagonist: a small, fragile white doll. A bindi on her forehead. Walking to school. Innocence and minority identity made physically small.</div></div>
+        </div>
+        <div class="sym-row">
+          <div class="sym-swatch" style="background:linear-gradient(90deg,#f5f5f0,#2E5E2E)"></div>
+          <div><div class="sym-title">The fade — Erasure</div><div class="sym-text">The climax: the doll is painted green. Not destroyed — repainted. A smiling face holds her up, a chadar falls, and the Urdu word مبارک (congratulations) appears. The most chilling kind of violence.</div></div>
+        </div>
+      </div>
+
+      <!-- portfolio_14.jpg: Concept development — flag symbolism, green/white dichotomy -->
+      <img src="images/portfolio_14.jpg" alt="Concept — Pakistan flag symbolism, the core visual argument" class="cs-img rev"/>
+      <p class="cs-cap rev">The core visual concept: Pakistan's flag and what it means when the white begins to disappear.</p>
+
+      <hr class="cs-hr"/>
+
+      <!-- NARRATIVE -->
+      <div class="rev"><div class="cs-label">Narrative</div>
+      <h2 class="cs-h">Six shots. <em>No dialogue. Everything.</em></h2></div>
+      <p class="cs-p rev d1">The film has no spoken dialogue — only sound design, music, and a closing voiceover. The entire story is told through composition and the visual logic of the colour system. A girl walks to school. Green figures appear. She is surrounded, lifted, carried. A brush comes. She becomes green. The flag's white is replaced. End.</p>
+      <p class="cs-p rev d2">The final voiceover is a fragment of Quaid-e-Azam's 1947 speech to the Constituent Assembly — Pakistan's founding promise of religious freedom for all citizens — placed against the image of the newly green doll. The juxtaposition is the film's point.</p>
+
+      <!-- portfolio_15.jpg: Narrative breakdown + storyboard panels -->
+      <img src="images/portfolio_15.jpg" alt="Narrative breakdown — theme, plot, message, and storyboard panels" class="cs-img rev d2"/>
+      <p class="cs-cap rev">Narrative breakdown and production storyboard panels — the visual arc from opening to the chadar falling.</p>
+
+      <hr class="cs-hr"/>
+
+      <!-- PRODUCTION -->
+      <div class="rev"><div class="cs-label">Production</div>
+      <h2 class="cs-h">Every frame <em>has a reason.</em></h2></div>
+      <p class="cs-p rev d1">The full shooting script documents every shot with scene direction, camera movement, music cues, and sound notes. The minimalist palette meant every design decision had to work much harder — there's nowhere to hide behind colour variety or surface detail. The scale contrast between the massive green figures and the tiny white doll had to be handled carefully to avoid making the film feel exploitative.</p>
+
+      <!-- portfolio_16.jpg: Full production storyboards with detailed shot notes -->
+      <img src="images/portfolio_16.jpg" alt="Production storyboards with shot direction, music cues, and camera notes" class="cs-img rev d2"/>
+      <p class="cs-cap rev">The shooting script: detailed storyboards with shot direction, music cues, camera movement notes, and sound design.</p>
+
+      <hr class="cs-hr"/>
+
+      <div class="rev"><div class="cs-label">Reflection</div>
+      <h2 class="cs-h">What I learned.</h2></div>
+      <div class="cs-cards col2 rev d1">
+        <div class="cs-card">
+          <div class="cs-card-title">Constraint creates clarity</div>
+          <div class="cs-card-text">Two colours. No dialogue. A short runtime. Every constraint forced me to be more precise about what the film was actually saying and whether each element was earning its place. This is my most distilled piece of work.</div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-card-title">Design can be advocacy</div>
+          <div class="cs-card-text">I could have written an essay about forced conversions. I made an animation instead. The visual argument reaches somewhere that text doesn't — it makes you feel the scale disparity before you intellectualise it.</div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-card-title">Representing harm responsibly</div>
+          <div class="cs-card-text">Working with a subject this serious required research into real testimonies and careful thought about representation. The film uses abstraction partly to protect the dignity of real people whose experiences it references.</div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-card-title">What it confirmed</div>
+          <div class="cs-card-text">That I want to keep making work at the intersection of design, animation, and social commentary. The response this film gets — the conversations it starts — is exactly why I do this.</div>
+        </div>
+      </div>
+
+      <div class="cs-next rev">
+        <div>
+          <div class="cs-next-lbl">Next project</div>
+          <div class="cs-next-name">Log Kya Kahain Gay?!?! →</div>
+        </div>
+        <a href="log-kya-kahain-gay.html" class="cs-next-arrow">↗</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="shared.js"></script>
+</body>
+</html>
